@@ -1,12 +1,24 @@
 <!DOCTYPE html>
-<html lang="ms">
+<html lang="ms" data-lang="ms">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Privacy Policy — Al-Mathurat: Wazifah Kubra</title>
-  <meta name="description" content="Dasar privasi untuk aplikasi Al-Mathurat: Wazifah Kubra. Kami tidak mengumpul sebarang data peribadi." />
+  <meta name="description" content="Privacy policy for Al-Mathurat: Wazifah Kubra. Dasar privasi aplikasi — kami tidak mengumpul sebarang data peribadi. We do not collect any personal data." />
   <meta name="theme-color" content="#0a3a2a" />
   <link rel="icon" type="image/png" href="./assets/icon.png" />
+
+  <script>
+    (function(){
+      try {
+        var saved = localStorage.getItem('mathurat-lang');
+        var nav = (navigator.language || '').toLowerCase();
+        var l = saved || (nav.indexOf('en') === 0 ? 'en' : 'ms');
+        document.documentElement.setAttribute('lang', l);
+        document.documentElement.setAttribute('data-lang', l);
+      } catch(e){}
+    })();
+  </script>
 
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -52,6 +64,10 @@
     .ul-link { position: relative; display: inline; border-bottom: 1px solid currentColor; padding-bottom: 1px; }
     .ul-link:hover { color: var(--emerald); }
 
+    /* Language visibility */
+    html[data-lang="ms"] [data-l="en"],
+    html[data-lang="en"] [data-l="ms"] { display: none !important; }
+
     /* Focus rings */
     *:focus { outline: none; }
     a:focus-visible,
@@ -89,9 +105,14 @@
       color: var(--ink-soft);
     }
     .masthead-left { justify-self: start; }
-    .masthead-right { justify-self: end; }
+    .masthead-right {
+      justify-self: end;
+      display: inline-flex;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 0 22px;
+    }
     .masthead-right a {
-      margin-left: 22px;
       display: inline-flex;
       align-items: center;
       min-height: 44px;
@@ -107,6 +128,41 @@
       color: var(--ink);
       line-height: 1;
     }
+
+    /* Language switch */
+    .lang-switch {
+      display: inline-flex;
+      align-items: center;
+      gap: 2px;
+      padding-left: 20px;
+      margin-left: 4px;
+      border-left: 1px solid var(--rule);
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 12px;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+    }
+    .lang-btn {
+      background: none;
+      border: none;
+      color: var(--ink-mute);
+      font: inherit;
+      letter-spacing: inherit;
+      text-transform: inherit;
+      cursor: pointer;
+      padding: 12px 8px;
+      min-height: 44px;
+      min-width: 44px;
+      transition: color 0.2s;
+    }
+    .lang-btn[aria-pressed="true"] {
+      color: var(--emerald);
+      text-decoration: underline;
+      text-underline-offset: 5px;
+      text-decoration-thickness: 1px;
+    }
+    .lang-btn:hover { color: var(--emerald); }
+    .lang-sep { color: var(--ink-mute); opacity: 0.35; user-select: none; }
 
     /* Article */
     .article {
@@ -271,7 +327,8 @@
     @media (max-width: 720px) {
       .masthead { padding: 16px 20px; font-size: 10px; grid-template-columns: 1fr 1fr; }
       .masthead-brand { grid-column: 1 / -1; justify-self: start; font-size: 18px; order: -1; }
-      .masthead-right a { margin-left: 14px; }
+      .masthead-right { gap: 0 14px; }
+      .lang-switch { padding-left: 12px; margin-left: 0; }
       .article { padding: 50px 22px 70px; }
       .summary p { font-size: 19px; }
       h2 { font-size: 24px; }
@@ -280,67 +337,142 @@
     }
   </style>
 </head>
-<body>
+<body data-title-ms="Dasar Privasi — Al-Mathurat: Wazifah Kubra" data-title-en="Privacy Policy — Al-Mathurat: Wazifah Kubra">
 
-  <a href="#main" class="skip-link">Langkau ke kandungan</a>
+  <a href="#main" class="skip-link">
+    <span data-l="ms">Langkau ke kandungan</span>
+    <span data-l="en">Skip to content</span>
+  </a>
 
   <header class="masthead">
-    <div class="masthead-left">Vol. I · Privasi</div>
+    <div class="masthead-left">
+      <span data-l="ms">Vol. I · Privasi</span>
+      <span data-l="en">Vol. I · Privacy</span>
+    </div>
     <a class="masthead-brand" href="./index.html">Al-Mathurat</a>
     <div class="masthead-right">
       <a class="ul-link" href="./index.html">Home</a>
       <a class="ul-link" href="./support.html">Support</a>
+      <div class="lang-switch" role="group" aria-label="Language / Bahasa">
+        <button type="button" class="lang-btn" data-set-lang="ms" aria-pressed="true">BM</button>
+        <span class="lang-sep" aria-hidden="true">/</span>
+        <button type="button" class="lang-btn" data-set-lang="en" aria-pressed="false">EN</button>
+      </div>
     </div>
   </header>
 
   <main id="main"><article class="article">
     <header class="article-header">
-      <div class="eyebrow"><span>Dasar Privasi</span></div>
-      <h1><em>Privacy</em><br/>Policy.</h1>
-      <div class="updated">Kemas kini terakhir &nbsp;·&nbsp; 21 April 2026</div>
+      <div class="eyebrow">
+        <span data-l="ms">Dasar Privasi</span>
+        <span data-l="en">Privacy Policy</span>
+      </div>
+      <h1 data-l="ms"><em>Dasar</em><br/>Privasi.</h1>
+      <h1 data-l="en"><em>Privacy</em><br/>Policy.</h1>
+      <div class="updated">
+        <span data-l="ms">Kemas kini terakhir &nbsp;·&nbsp; 21 April 2026</span>
+        <span data-l="en">Last updated &nbsp;·&nbsp; 21 April 2026</span>
+      </div>
     </header>
 
     <aside class="summary">
-      <span class="label">Ringkasan · tl;dr</span>
-      <p>Al-Mathurat tidak mengumpul, menyimpan, atau menghantar sebarang data peribadi anda. Tiada pendaftaran, tiada pengesanan, tiada iklan — semuanya kekal pada peranti anda.</p>
+      <span class="label">
+        <span data-l="ms">Ringkasan · tl;dr</span>
+        <span data-l="en">Summary · tl;dr</span>
+      </span>
+      <p data-l="ms">Al-Mathurat tidak mengumpul, menyimpan, atau menghantar sebarang data peribadi anda. Tiada pendaftaran, tiada pengesanan, tiada iklan — semuanya kekal pada peranti anda.</p>
+      <p data-l="en">Al-Mathurat does not collect, store, or transmit any of your personal data. No sign-up, no tracking, no ads — everything stays on your device.</p>
     </aside>
 
-    <h2><span class="num">I.</span> <span><em>Siapa</em> kami</span></h2>
-    <p>Aplikasi <strong>Al-Mathurat: Wazifah Kubra</strong> ("Aplikasi") diterbitkan oleh Techsamana ("kami"). Dasar ini menerangkan bagaimana Aplikasi mengendalikan maklumat ketika anda menggunakannya.</p>
+    <h2>
+      <span class="num">I.</span>
+      <span data-l="ms"><em>Siapa</em> kami</span>
+      <span data-l="en">Who <em>we</em> are</span>
+    </h2>
+    <p data-l="ms">Aplikasi <strong>Al-Mathurat: Wazifah Kubra</strong> ("Aplikasi") diterbitkan oleh Techsamana ("kami"). Dasar ini menerangkan bagaimana Aplikasi mengendalikan maklumat ketika anda menggunakannya.</p>
+    <p data-l="en">The <strong>Al-Mathurat: Wazifah Kubra</strong> app ("the App") is published by Techsamana ("we"). This policy describes how the App handles information when you use it.</p>
 
-    <h2><span class="num">II.</span> <span>Data yang <em>kami kumpul</em></span></h2>
-    <p><strong>Tiada.</strong> Aplikasi ini tidak mengumpul sebarang data peribadi, termasuk:</p>
-    <ul>
+    <h2>
+      <span class="num">II.</span>
+      <span data-l="ms">Data yang <em>kami kumpul</em></span>
+      <span data-l="en">Data <em>we collect</em></span>
+    </h2>
+    <p data-l="ms"><strong>Tiada.</strong> Aplikasi ini tidak mengumpul sebarang data peribadi, termasuk:</p>
+    <p data-l="en"><strong>None.</strong> The App does not collect any personal data, including:</p>
+    <ul data-l="ms">
       <li>Tiada nama, emel, nombor telefon, atau akaun pengguna</li>
       <li>Tiada lokasi, kenalan, kalendar, atau foto</li>
       <li>Tiada pengecam peranti untuk tujuan pengiklanan</li>
       <li>Tiada analitik pihak ketiga atau pengesanan</li>
       <li>Tiada data penggunaan dihantar ke pelayan kami</li>
     </ul>
+    <ul data-l="en">
+      <li>No name, email, phone number, or user accounts</li>
+      <li>No location, contacts, calendar, or photos</li>
+      <li>No device identifiers for advertising purposes</li>
+      <li>No third-party analytics or tracking</li>
+      <li>No usage data sent to our servers</li>
+    </ul>
 
-    <h2><span class="num">III.</span> <span>Data <em>pada peranti</em> anda</span></h2>
-    <p>Aplikasi menyimpan beberapa maklumat <strong>secara setempat</strong> pada peranti anda untuk pengalaman yang lebih baik:</p>
-    <ul>
+    <h2>
+      <span class="num">III.</span>
+      <span data-l="ms">Data <em>pada peranti</em> anda</span>
+      <span data-l="en">Data <em>on your device</em></span>
+    </h2>
+    <p data-l="ms">Aplikasi menyimpan beberapa maklumat <strong>secara setempat</strong> pada peranti anda untuk pengalaman yang lebih baik:</p>
+    <p data-l="en">The App stores some information <strong>locally</strong> on your device to improve your experience:</p>
+    <ul data-l="ms">
       <li>Bilangan bacaan (counter tasbih) untuk setiap doa</li>
       <li>Posisi bacaan terakhir anda</li>
       <li>Pilihan mod (Subuh/Maghrib) dan tetapan paparan</li>
     </ul>
-    <p>Maklumat ini <strong>tidak pernah meninggalkan peranti anda</strong>. Ia akan dipadam apabila anda memadam Aplikasi.</p>
+    <ul data-l="en">
+      <li>Recitation count (tasbih counter) for each dua</li>
+      <li>Your last reading position</li>
+      <li>Mode preference (Fajr/Maghrib) and display settings</li>
+    </ul>
+    <p data-l="ms">Maklumat ini <strong>tidak pernah meninggalkan peranti anda</strong>. Ia akan dipadam apabila anda memadam Aplikasi.</p>
+    <p data-l="en">This information <strong>never leaves your device</strong>. It is deleted when you uninstall the App.</p>
 
-    <h2><span class="num">IV.</span> <span>Pihak <em>ketiga</em></span></h2>
-    <p>Aplikasi <strong>tidak menggunakan</strong> perkhidmatan analitik (seperti Google Analytics atau Firebase Analytics), rangkaian iklan, atau SDK pengesanan pihak ketiga.</p>
+    <h2>
+      <span class="num">IV.</span>
+      <span data-l="ms">Pihak <em>ketiga</em></span>
+      <span data-l="en"><em>Third</em> parties</span>
+    </h2>
+    <p data-l="ms">Aplikasi <strong>tidak menggunakan</strong> perkhidmatan analitik (seperti Google Analytics atau Firebase Analytics), rangkaian iklan, atau SDK pengesanan pihak ketiga.</p>
+    <p data-l="en">The App <strong>does not use</strong> any analytics services (such as Google Analytics or Firebase Analytics), ad networks, or third-party tracking SDKs.</p>
 
-    <h2><span class="num">V.</span> <span><em>Kanak-kanak</em></span></h2>
-    <p>Aplikasi ini sesuai untuk semua umur (4+) dan tidak mengumpul data daripada sesiapa, termasuk kanak-kanak di bawah umur 13 tahun.</p>
+    <h2>
+      <span class="num">V.</span>
+      <span data-l="ms"><em>Kanak-kanak</em></span>
+      <span data-l="en"><em>Children</em></span>
+    </h2>
+    <p data-l="ms">Aplikasi ini sesuai untuk semua umur (4+) dan tidak mengumpul data daripada sesiapa, termasuk kanak-kanak di bawah umur 13 tahun.</p>
+    <p data-l="en">The App is rated for all ages (4+) and does not collect data from anyone, including children under the age of 13.</p>
 
-    <h2><span class="num">VI.</span> <span>Kebenaran <em>peranti</em></span></h2>
-    <p>Aplikasi tidak meminta akses kepada kamera, mikrofon, lokasi, kenalan, foto, atau pemberitahuan.</p>
+    <h2>
+      <span class="num">VI.</span>
+      <span data-l="ms">Kebenaran <em>peranti</em></span>
+      <span data-l="en">Device <em>permissions</em></span>
+    </h2>
+    <p data-l="ms">Aplikasi tidak meminta akses kepada kamera, mikrofon, lokasi, kenalan, foto, atau pemberitahuan.</p>
+    <p data-l="en">The App does not request access to the camera, microphone, location, contacts, photos, or notifications.</p>
 
-    <h2><span class="num">VII.</span> <span><em>Perubahan</em> dasar</span></h2>
-    <p>Jika kami mengemas kini dasar ini pada masa akan datang, tarikh "Kemas kini terakhir" di atas akan ditukar. Versi terkini sentiasa boleh dirujuk di halaman ini.</p>
+    <h2>
+      <span class="num">VII.</span>
+      <span data-l="ms"><em>Perubahan</em> dasar</span>
+      <span data-l="en">Policy <em>changes</em></span>
+    </h2>
+    <p data-l="ms">Jika kami mengemas kini dasar ini pada masa akan datang, tarikh "Kemas kini terakhir" di atas akan ditukar. Versi terkini sentiasa boleh dirujuk di halaman ini.</p>
+    <p data-l="en">If we update this policy in the future, the "Last updated" date above will change. The current version will always be available on this page.</p>
 
-    <h2><span class="num">VIII.</span> <span><em>Hubungi</em> kami</span></h2>
-    <p>Jika anda ada sebarang soalan mengenai privasi atau Aplikasi, sila hubungi <a class="ul-link" href="mailto:mohdhaaziq@gmail.com">mohdhaaziq@gmail.com</a>.</p>
+    <h2>
+      <span class="num">VIII.</span>
+      <span data-l="ms"><em>Hubungi</em> kami</span>
+      <span data-l="en"><em>Contact</em> us</span>
+    </h2>
+    <p data-l="ms">Jika anda ada sebarang soalan mengenai privasi atau Aplikasi, sila hubungi <a class="ul-link" href="mailto:mohdhaaziq@gmail.com">mohdhaaziq@gmail.com</a>.</p>
+    <p data-l="en">If you have any questions about privacy or the App, please email <a class="ul-link" href="mailto:mohdhaaziq@gmail.com">mohdhaaziq@gmail.com</a>.</p>
 
     <div class="ornament" aria-hidden="true">
       <span class="line"></span>
@@ -359,6 +491,29 @@
       </nav>
     </div>
   </footer>
+
+  <script>
+    (function(){
+      var root = document.documentElement;
+      var body = document.body;
+      function setLang(l){
+        if (l !== 'ms' && l !== 'en') l = 'ms';
+        root.setAttribute('lang', l);
+        root.setAttribute('data-lang', l);
+        try { localStorage.setItem('mathurat-lang', l); } catch(e){}
+        document.querySelectorAll('.lang-btn').forEach(function(b){
+          b.setAttribute('aria-pressed', b.getAttribute('data-set-lang') === l ? 'true' : 'false');
+        });
+        var tMs = body.getAttribute('data-title-ms');
+        var tEn = body.getAttribute('data-title-en');
+        if (tMs && tEn) document.title = l === 'en' ? tEn : tMs;
+      }
+      document.querySelectorAll('.lang-btn').forEach(function(b){
+        b.addEventListener('click', function(){ setLang(b.getAttribute('data-set-lang')); });
+      });
+      setLang(root.getAttribute('data-lang') || 'ms');
+    })();
+  </script>
 
 </body>
 </html>

@@ -1,12 +1,24 @@
 <!DOCTYPE html>
-<html lang="ms">
+<html lang="ms" data-lang="ms">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Support — Al-Mathurat: Wazifah Kubra</title>
-  <meta name="description" content="Bantuan dan sokongan untuk aplikasi Al-Mathurat: Wazifah Kubra. Soalan lazim, cara hubungi kami, dan panduan penggunaan." />
+  <meta name="description" content="Help and support for Al-Mathurat: Wazifah Kubra. Bantuan dan sokongan — soalan lazim dan cara hubungi kami." />
   <meta name="theme-color" content="#0a3a2a" />
   <link rel="icon" type="image/png" href="./assets/icon.png" />
+
+  <script>
+    (function(){
+      try {
+        var saved = localStorage.getItem('mathurat-lang');
+        var nav = (navigator.language || '').toLowerCase();
+        var l = saved || (nav.indexOf('en') === 0 ? 'en' : 'ms');
+        document.documentElement.setAttribute('lang', l);
+        document.documentElement.setAttribute('data-lang', l);
+      } catch(e){}
+    })();
+  </script>
 
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -52,6 +64,10 @@
     .ul-link { position: relative; display: inline; border-bottom: 1px solid currentColor; padding-bottom: 1px; }
     .ul-link:hover { color: var(--emerald); }
 
+    /* Language visibility */
+    html[data-lang="ms"] [data-l="en"],
+    html[data-lang="en"] [data-l="ms"] { display: none !important; }
+
     /* Focus rings */
     *:focus { outline: none; }
     a:focus-visible,
@@ -89,9 +105,14 @@
       color: var(--ink-soft);
     }
     .masthead-left { justify-self: start; }
-    .masthead-right { justify-self: end; }
+    .masthead-right {
+      justify-self: end;
+      display: inline-flex;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 0 22px;
+    }
     .masthead-right a {
-      margin-left: 22px;
       display: inline-flex;
       align-items: center;
       min-height: 44px;
@@ -107,6 +128,41 @@
       color: var(--ink);
       line-height: 1;
     }
+
+    /* Language switch */
+    .lang-switch {
+      display: inline-flex;
+      align-items: center;
+      gap: 2px;
+      padding-left: 20px;
+      margin-left: 4px;
+      border-left: 1px solid var(--rule);
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 12px;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+    }
+    .lang-btn {
+      background: none;
+      border: none;
+      color: var(--ink-mute);
+      font: inherit;
+      letter-spacing: inherit;
+      text-transform: inherit;
+      cursor: pointer;
+      padding: 12px 8px;
+      min-height: 44px;
+      min-width: 44px;
+      transition: color 0.2s;
+    }
+    .lang-btn[aria-pressed="true"] {
+      color: var(--emerald);
+      text-decoration: underline;
+      text-underline-offset: 5px;
+      text-decoration-thickness: 1px;
+    }
+    .lang-btn:hover { color: var(--emerald); }
+    .lang-sep { color: var(--ink-mute); opacity: 0.35; user-select: none; }
 
     /* Article */
     .article {
@@ -393,7 +449,8 @@
     @media (max-width: 760px) {
       .masthead { padding: 16px 20px; font-size: 10px; grid-template-columns: 1fr 1fr; }
       .masthead-brand { grid-column: 1 / -1; justify-self: start; font-size: 18px; order: -1; }
-      .masthead-right a { margin-left: 14px; }
+      .masthead-right { gap: 0 14px; }
+      .lang-switch { padding-left: 12px; margin-left: 0; }
       .article { padding: 50px 22px 70px; }
       .contact-grid { grid-template-columns: 1fr; gap: 14px; margin: 40px 0; }
       .contact-card { padding: 26px 22px; }
@@ -408,139 +465,194 @@
     }
   </style>
 </head>
-<body>
+<body data-title-ms="Sokongan — Al-Mathurat: Wazifah Kubra" data-title-en="Support — Al-Mathurat: Wazifah Kubra">
 
-  <a href="#main" class="skip-link">Langkau ke kandungan</a>
+  <a href="#main" class="skip-link">
+    <span data-l="ms">Langkau ke kandungan</span>
+    <span data-l="en">Skip to content</span>
+  </a>
 
   <header class="masthead">
-    <div class="masthead-left">Vol. I · Sokongan</div>
+    <div class="masthead-left">
+      <span data-l="ms">Vol. I · Sokongan</span>
+      <span data-l="en">Vol. I · Support</span>
+    </div>
     <a class="masthead-brand" href="./index.html">Al-Mathurat</a>
     <div class="masthead-right">
       <a class="ul-link" href="./index.html">Home</a>
       <a class="ul-link" href="./privacy.html">Privacy</a>
+      <div class="lang-switch" role="group" aria-label="Language / Bahasa">
+        <button type="button" class="lang-btn" data-set-lang="ms" aria-pressed="true">BM</button>
+        <span class="lang-sep" aria-hidden="true">/</span>
+        <button type="button" class="lang-btn" data-set-lang="en" aria-pressed="false">EN</button>
+      </div>
     </div>
   </header>
 
   <main id="main"><article class="article">
     <header class="article-header">
-      <div class="eyebrow"><span>Bantuan &amp; Sokongan</span></div>
-      <h1><em>How can</em><br/>we help?</h1>
-      <p class="lede">Terima kasih kerana menggunakan Al-Mathurat. Kami di sini untuk membantu — soalan, laporan pepijat, atau cadangan semua dialu-alukan.</p>
+      <div class="eyebrow">
+        <span data-l="ms">Bantuan &amp; Sokongan</span>
+        <span data-l="en">Help &amp; Support</span>
+      </div>
+      <h1 data-l="ms"><em>Boleh kami</em><br/>bantu?</h1>
+      <h1 data-l="en"><em>How can</em><br/>we help?</h1>
+      <p class="lede" data-l="ms">Terima kasih kerana menggunakan Al-Mathurat. Kami di sini untuk membantu — soalan, laporan pepijat, atau cadangan semua dialu-alukan.</p>
+      <p class="lede" data-l="en">Thank you for using Al-Mathurat. We're here to help — questions, bug reports, and suggestions are all welcome.</p>
     </header>
 
     <div class="contact-grid">
       <div class="contact-card primary">
-        <div class="kicker">Cara terpantas</div>
-        <h3>Hantar <em>emel</em>.</h3>
-        <p>Kami cuba balas setiap emel dalam masa 1–3 hari bekerja. Sila sertakan model iPhone dan versi iOS jika melaporkan masalah teknikal.</p>
+        <div class="kicker">
+          <span data-l="ms">Cara terpantas</span>
+          <span data-l="en">Fastest way</span>
+        </div>
+        <h3 data-l="ms">Hantar <em>emel</em>.</h3>
+        <h3 data-l="en">Send an <em>email</em>.</h3>
+        <p data-l="ms">Kami cuba balas setiap emel dalam masa 1–3 hari bekerja. Sila sertakan model iPhone dan versi iOS jika melaporkan masalah teknikal.</p>
+        <p data-l="en">We try to reply to every email within 1–3 business days. Please include your iPhone model and iOS version when reporting a technical issue.</p>
         <a class="email-link" href="mailto:mohdhaaziq@gmail.com?subject=Al-Mathurat%20Support">
           mohdhaaziq@gmail.com <span aria-hidden="true">↗</span>
         </a>
-        <div class="sla">SLA · 1–3 hari bekerja</div>
+        <div class="sla">
+          <span data-l="ms">SLA · 1–3 hari bekerja</span>
+          <span data-l="en">SLA · 1–3 business days</span>
+        </div>
       </div>
       <div class="support-aside">
-        <h4>Jangkaan masa balas</h4>
-        <p><strong>Isnin – Jumaat</strong><br/>Kami aktif memeriksa inbox sokongan pada waktu bekerja waktu Malaysia (GMT+8).</p>
-        <h4 style="margin-top: 24px;">Sebelum emel</h4>
-        <p>Sila semak <strong>Soalan Lazim</strong> di bawah — kebanyakan isu biasa sudah ada jawapan di sana.</p>
+        <h4>
+          <span data-l="ms">Jangkaan masa balas</span>
+          <span data-l="en">Expected response time</span>
+        </h4>
+        <p data-l="ms"><strong>Isnin – Jumaat</strong><br/>Kami aktif memeriksa inbox sokongan pada waktu bekerja waktu Malaysia (GMT+8).</p>
+        <p data-l="en"><strong>Monday – Friday</strong><br/>We actively monitor the support inbox during Malaysia business hours (GMT+8).</p>
+        <h4 style="margin-top: 24px;">
+          <span data-l="ms">Sebelum emel</span>
+          <span data-l="en">Before emailing</span>
+        </h4>
+        <p data-l="ms">Sila semak <strong>Soalan Lazim</strong> di bawah — kebanyakan isu biasa sudah ada jawapan di sana.</p>
+        <p data-l="en">Please check the <strong>FAQ</strong> below — most common issues already have answers there.</p>
       </div>
     </div>
 
     <div class="faq-header">
       <span class="section-num">§ II</span>
-      <h2>Soalan <em>lazim</em></h2>
+      <h2 data-l="ms">Soalan <em>lazim</em></h2>
+      <h2 data-l="en">Frequently asked <em>questions</em></h2>
     </div>
 
     <details class="faq-item">
       <summary>
         <span class="faq-num">01</span>
-        <span class="faq-q">Adakah app ini <em>percuma</em>?</span>
+        <span class="faq-q" data-l="ms">Adakah app ini <em>percuma</em>?</span>
+        <span class="faq-q" data-l="en">Is this app <em>free</em>?</span>
         <span class="faq-toggle" aria-hidden="true">+</span>
       </summary>
       <div class="faq-answer">
-        <p>Ya. Al-Mathurat <strong>100% percuma</strong>, tiada iklan, dan tiada pembelian dalam app.</p>
+        <p data-l="ms">Ya. Al-Mathurat <strong>100% percuma</strong>, tiada iklan, dan tiada pembelian dalam app.</p>
+        <p data-l="en">Yes. Al-Mathurat is <strong>100% free</strong>, with no ads and no in-app purchases.</p>
       </div>
     </details>
 
     <details class="faq-item">
       <summary>
         <span class="faq-num">02</span>
-        <span class="faq-q">Adakah <em>data saya</em> dikumpul?</span>
+        <span class="faq-q" data-l="ms">Adakah <em>data saya</em> dikumpul?</span>
+        <span class="faq-q" data-l="en">Is <em>my data</em> collected?</span>
         <span class="faq-toggle" aria-hidden="true">+</span>
       </summary>
       <div class="faq-answer">
-        <p>Tidak. Kami <strong>tidak mengumpul</strong> sebarang data peribadi. Bilangan bacaan dan tetapan anda disimpan secara setempat pada peranti anda sahaja. Rujuk <a class="ul-link" href="./privacy.html">Privacy Policy</a> untuk butiran penuh.</p>
+        <p data-l="ms">Tidak. Kami <strong>tidak mengumpul</strong> sebarang data peribadi. Bilangan bacaan dan tetapan anda disimpan secara setempat pada peranti anda sahaja. Rujuk <a class="ul-link" href="./privacy.html">Dasar Privasi</a> untuk butiran penuh.</p>
+        <p data-l="en">No. We <strong>do not collect</strong> any personal data. Your recitation counts and settings are stored locally on your device only. See the <a class="ul-link" href="./privacy.html">Privacy Policy</a> for full details.</p>
       </div>
     </details>
 
     <details class="faq-item">
       <summary>
         <span class="faq-num">03</span>
-        <span class="faq-q">Bagaimana menggunakan <em>kaunter</em> (tasbih)?</span>
+        <span class="faq-q" data-l="ms">Bagaimana menggunakan <em>kaunter</em> (tasbih)?</span>
+        <span class="faq-q" data-l="en">How do I use the <em>counter</em> (tasbih)?</span>
         <span class="faq-toggle" aria-hidden="true">+</span>
       </summary>
       <div class="faq-answer">
-        <p>Ketik pada butang kaunter untuk menambah bilangan bacaan. Bilangan akan disimpan secara automatik dan boleh disambung bila-bila masa.</p>
+        <p data-l="ms">Ketik pada butang kaunter untuk menambah bilangan bacaan. Bilangan akan disimpan secara automatik dan boleh disambung bila-bila masa.</p>
+        <p data-l="en">Tap the counter button to increment the count. The count is saved automatically and you can resume anytime.</p>
       </div>
     </details>
 
     <details class="faq-item">
       <summary>
         <span class="faq-num">04</span>
-        <span class="faq-q">Bagaimana <em>beralih</em> antara doa?</span>
+        <span class="faq-q" data-l="ms">Bagaimana <em>beralih</em> antara doa?</span>
+        <span class="faq-q" data-l="en">How do I <em>switch</em> between duas?</span>
         <span class="faq-toggle" aria-hidden="true">+</span>
       </summary>
       <div class="faq-answer">
-        <p>Swipe kiri atau kanan pada skrin untuk ke doa seterusnya atau sebelumnya. Aplikasi akan mengingat doa terakhir yang anda baca.</p>
+        <p data-l="ms">Swipe kiri atau kanan pada skrin untuk ke doa seterusnya atau sebelumnya. Aplikasi akan mengingat doa terakhir yang anda baca.</p>
+        <p data-l="en">Swipe left or right on the screen to go to the next or previous dua. The app remembers the last dua you read.</p>
       </div>
     </details>
 
     <details class="faq-item">
       <summary>
         <span class="faq-num">05</span>
-        <span class="faq-q">Apa beza <em>mod Subuh</em> dan Maghrib?</span>
+        <span class="faq-q" data-l="ms">Apa beza <em>mod Subuh</em> dan Maghrib?</span>
+        <span class="faq-q" data-l="en">What's the difference between <em>Fajr</em> and Maghrib mode?</span>
         <span class="faq-toggle" aria-hidden="true">+</span>
       </summary>
       <div class="faq-answer">
-        <p>Mod Subuh (pagi) direka untuk bacaan selepas Subuh — dengan paparan cerah yang lembut. Mod Maghrib (petang) menggunakan paparan gelap yang sesuai untuk bacaan selepas Asar hingga malam.</p>
+        <p data-l="ms">Mod Subuh (pagi) direka untuk bacaan selepas Subuh — dengan paparan cerah yang lembut. Mod Maghrib (petang) menggunakan paparan gelap yang sesuai untuk bacaan selepas Asar hingga malam.</p>
+        <p data-l="en">Fajr mode (morning) is designed for recitation after Fajr — with a soft light display. Maghrib mode (evening) uses a dark display suited for recitation from Asr until night.</p>
       </div>
     </details>
 
     <details class="faq-item">
       <summary>
         <span class="faq-num">06</span>
-        <span class="faq-q">Sumber teks ini <em>dari mana</em>?</span>
+        <span class="faq-q" data-l="ms">Sumber teks ini <em>dari mana</em>?</span>
+        <span class="faq-q" data-l="en">Where is the text <em>sourced</em> from?</span>
         <span class="faq-toggle" aria-hidden="true">+</span>
       </summary>
       <div class="faq-answer">
-        <p>Teks susunan <strong>Wazifah Kubra</strong> (lengkap) dipetik dari PDF Al-Mathurat Kubra terbitan JAKIM (Jabatan Kemajuan Islam Malaysia), disusun asal oleh Imam Hassan al-Banna. Aplikasi ini adalah projek komuniti oleh Techsamana — tiada kaitan rasmi dengan JAKIM.</p>
+        <p data-l="ms">Teks susunan <strong>Wazifah Kubra</strong> (lengkap) dipetik dari PDF Al-Mathurat Kubra terbitan JAKIM (Jabatan Kemajuan Islam Malaysia), disusun asal oleh Imam Hassan al-Banna. Aplikasi ini adalah projek komuniti oleh Techsamana — tiada kaitan rasmi dengan JAKIM.</p>
+        <p data-l="en">The <strong>Wazifah Kubra</strong> (complete) arrangement is taken from the Al-Mathurat Kubra PDF published by JAKIM (Malaysian Department of Islamic Development), originally compiled by Imam Hassan al-Banna. This app is a community project by Techsamana — it has no official affiliation with JAKIM.</p>
       </div>
     </details>
 
     <details class="faq-item">
       <summary>
         <span class="faq-num">07</span>
-        <span class="faq-q">Skrin saya <em>mati</em> ketika membaca. Boleh elak?</span>
+        <span class="faq-q" data-l="ms">Skrin saya <em>mati</em> ketika membaca. Boleh elak?</span>
+        <span class="faq-q" data-l="en">My screen <em>turns off</em> while reading. Can I prevent it?</span>
         <span class="faq-toggle" aria-hidden="true">+</span>
       </summary>
       <div class="faq-answer">
-        <p>Aplikasi secara automatik mengekalkan skrin terjaga semasa anda berada dalam mod bacaan. Jika masih mati, sila pastikan anda membenarkan ini dalam tetapan peranti.</p>
+        <p data-l="ms">Aplikasi secara automatik mengekalkan skrin terjaga semasa anda berada dalam mod bacaan. Jika masih mati, sila pastikan anda membenarkan ini dalam tetapan peranti.</p>
+        <p data-l="en">The app automatically keeps the screen awake while you're in reading mode. If it still turns off, please check that this is permitted in your device settings.</p>
       </div>
     </details>
 
     <details class="faq-item">
       <summary>
         <span class="faq-num">08</span>
-        <span class="faq-q">Bagaimana <em>laporkan pepijat</em> atau cadangan?</span>
+        <span class="faq-q" data-l="ms">Bagaimana <em>laporkan pepijat</em> atau cadangan?</span>
+        <span class="faq-q" data-l="en">How do I <em>report a bug</em> or suggestion?</span>
         <span class="faq-toggle" aria-hidden="true">+</span>
       </summary>
       <div class="faq-answer">
-        <p>Hantar emel ke <a class="ul-link" href="mailto:mohdhaaziq@gmail.com">mohdhaaziq@gmail.com</a>. Sila sertakan:</p>
-        <ul>
+        <p data-l="ms">Hantar emel ke <a class="ul-link" href="mailto:mohdhaaziq@gmail.com">mohdhaaziq@gmail.com</a>. Sila sertakan:</p>
+        <ul data-l="ms">
           <li>Model iPhone (cth. iPhone 15 Pro)</li>
           <li>Versi iOS (Settings → General → About)</li>
           <li>Penerangan ringkas apa yang berlaku</li>
           <li>Tangkapan skrin jika ada</li>
+        </ul>
+        <p data-l="en">Send an email to <a class="ul-link" href="mailto:mohdhaaziq@gmail.com">mohdhaaziq@gmail.com</a>. Please include:</p>
+        <ul data-l="en">
+          <li>iPhone model (e.g. iPhone 15 Pro)</li>
+          <li>iOS version (Settings → General → About)</li>
+          <li>Short description of what happened</li>
+          <li>Screenshots if available</li>
         </ul>
       </div>
     </details>
@@ -548,22 +660,26 @@
     <details class="faq-item">
       <summary>
         <span class="faq-num">09</span>
-        <span class="faq-q">Adakah app ini <em>menyokong Android</em>?</span>
+        <span class="faq-q" data-l="ms">Adakah app ini <em>menyokong Android</em>?</span>
+        <span class="faq-q" data-l="en">Does this app <em>support Android</em>?</span>
         <span class="faq-toggle" aria-hidden="true">+</span>
       </summary>
       <div class="faq-answer">
-        <p>Buat masa ini, Al-Mathurat hanya tersedia di App Store untuk iPhone dan iPad. Versi Android <strong>dalam pertimbangan</strong> untuk akan datang.</p>
+        <p data-l="ms">Buat masa ini, Al-Mathurat hanya tersedia di App Store untuk iPhone dan iPad. Versi Android <strong>dalam pertimbangan</strong> untuk akan datang.</p>
+        <p data-l="en">For now, Al-Mathurat is only available on the App Store for iPhone and iPad. An Android version is <strong>under consideration</strong> for the future.</p>
       </div>
     </details>
 
     <details class="faq-item">
       <summary>
         <span class="faq-num">10</span>
-        <span class="faq-q">Adakah app berfungsi <em>tanpa internet</em>?</span>
+        <span class="faq-q" data-l="ms">Adakah app berfungsi <em>tanpa internet</em>?</span>
+        <span class="faq-q" data-l="en">Does the app work <em>offline</em>?</span>
         <span class="faq-toggle" aria-hidden="true">+</span>
       </summary>
       <div class="faq-answer">
-        <p>Ya. Semua teks dibundel dengan app. Anda <strong>tidak memerlukan</strong> sambungan internet untuk membaca wirid.</p>
+        <p data-l="ms">Ya. Semua teks dibundel dengan app. Anda <strong>tidak memerlukan</strong> sambungan internet untuk membaca wirid.</p>
+        <p data-l="en">Yes. All text is bundled with the app. You <strong>do not need</strong> an internet connection to read the wirid.</p>
       </div>
     </details>
 
@@ -584,6 +700,29 @@
       </nav>
     </div>
   </footer>
+
+  <script>
+    (function(){
+      var root = document.documentElement;
+      var body = document.body;
+      function setLang(l){
+        if (l !== 'ms' && l !== 'en') l = 'ms';
+        root.setAttribute('lang', l);
+        root.setAttribute('data-lang', l);
+        try { localStorage.setItem('mathurat-lang', l); } catch(e){}
+        document.querySelectorAll('.lang-btn').forEach(function(b){
+          b.setAttribute('aria-pressed', b.getAttribute('data-set-lang') === l ? 'true' : 'false');
+        });
+        var tMs = body.getAttribute('data-title-ms');
+        var tEn = body.getAttribute('data-title-en');
+        if (tMs && tEn) document.title = l === 'en' ? tEn : tMs;
+      }
+      document.querySelectorAll('.lang-btn').forEach(function(b){
+        b.addEventListener('click', function(){ setLang(b.getAttribute('data-set-lang')); });
+      });
+      setLang(root.getAttribute('data-lang') || 'ms');
+    })();
+  </script>
 
 </body>
 </html>

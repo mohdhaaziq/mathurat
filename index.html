@@ -1,0 +1,955 @@
+<!DOCTYPE html>
+<html lang="ms">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Al-Mathurat: Wazifah Kubra — Zikir pagi & petang JAKIM</title>
+  <meta name="description" content="Al-Mathurat — himpunan zikir pagi dan petang susunan Imam Hassan al-Banna, berpandukan PDF terbitan JAKIM. Teks Arab, rumi, terjemahan Melayu. Percuma, tanpa iklan, tanpa pengumpulan data. Projek komuniti Techsamana." />
+  <meta name="theme-color" content="#0a3a2a" />
+
+  <meta property="og:title" content="Al-Mathurat: Wazifah Kubra" />
+  <meta property="og:description" content="Zikir pagi & petang JAKIM — teks Arab, rumi, terjemahan Melayu." />
+  <meta property="og:type" content="website" />
+
+  <link rel="icon" type="image/png" href="./assets/icon.png" />
+  <link rel="apple-touch-icon" href="./assets/icon.png" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400&family=Instrument+Serif:ital@0;1&family=Newsreader:ital,opsz,wght@0,6..72,300;0,6..72,400;0,6..72,500;1,6..72,300;1,6..72,400&display=swap" rel="stylesheet" />
+
+  <style>
+    :root {
+      --paper:      #f2e9d2;
+      --paper-2:    #ebdfc2;
+      --paper-edge: #d9caa4;
+      --ink:        #171009;
+      --ink-soft:   #3a2e1e;
+      --ink-mute:   #6b5836;
+      --emerald:    #0a3a2a;
+      --emerald-dk: #052218;
+      --gold:       #a6823a;
+      --gold-soft:  #c9a55f;
+      --dawn:       #e8a57e;
+      --dawn-2:     #f3c9a8;
+      --dusk:       #1f2a4a;
+      --oxblood:    #7a2e2a;
+      --rule:       rgba(23, 16, 9, 0.18);
+      --rule-soft:  rgba(23, 16, 9, 0.08);
+    }
+
+    * { box-sizing: border-box; }
+    html, body { margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--paper);
+      color: var(--ink);
+      font-family: 'Newsreader', 'Iowan Old Style', Georgia, serif;
+      font-weight: 400;
+      font-size: 18px;
+      line-height: 1.55;
+      -webkit-font-smoothing: antialiased;
+      text-rendering: optimizeLegibility;
+      overflow-x: hidden;
+    }
+
+    /* Paper grain overlay */
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      z-index: 100;
+      background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='220' height='220'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 0.09 0 0 0 0 0.06 0 0 0 0 0.03 0 0 0 0.55 0'/></filter><rect width='100%25' height='100%25' filter='url(%23n)'/></svg>");
+      opacity: 0.22;
+      mix-blend-mode: multiply;
+    }
+
+    /* Soft vignette + warm wash */
+    body::after {
+      content: '';
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      z-index: 99;
+      background:
+        radial-gradient(140% 90% at 50% -10%, rgba(242, 233, 210, 0) 40%, rgba(140, 108, 54, 0.12) 90%),
+        radial-gradient(60% 40% at 15% 10%, rgba(248, 210, 150, 0.18), transparent 70%);
+    }
+
+    a { color: inherit; text-decoration: none; }
+
+    /* Focus rings — visible keyboard navigation */
+    *:focus { outline: none; }
+    a:focus-visible,
+    summary:focus-visible,
+    button:focus-visible,
+    [tabindex]:focus-visible {
+      outline: 2px solid var(--emerald);
+      outline-offset: 3px;
+      border-radius: 2px;
+    }
+
+    /* Skip link — WCAG keyboard nav */
+    .skip-link {
+      position: absolute;
+      top: -48px;
+      left: 14px;
+      background: var(--ink);
+      color: var(--paper);
+      padding: 10px 18px;
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 13px;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      z-index: 1000;
+      transition: top 0.2s ease-out;
+    }
+    .skip-link:focus { top: 14px; }
+
+    /* Link underline style */
+    .ul-link {
+      position: relative;
+      display: inline-block;
+    }
+    .ul-link::after {
+      content: '';
+      position: absolute;
+      left: 0; right: 0; bottom: -2px;
+      height: 1px;
+      background: currentColor;
+      opacity: 0.4;
+      transform-origin: left;
+      transition: transform 0.4s cubic-bezier(.2,.8,.2,1), opacity 0.3s;
+    }
+    .ul-link:hover::after { opacity: 0.9; transform: scaleX(1.02); }
+
+    /* ==================== MASTHEAD ==================== */
+    .masthead {
+      position: relative;
+      z-index: 2;
+      padding: 22px 40px 18px;
+      display: grid;
+      grid-template-columns: 1fr auto 1fr;
+      align-items: center;
+      gap: 20px;
+      border-bottom: 1px solid var(--rule);
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 12px;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--ink-soft);
+    }
+    .masthead-left { justify-self: start; }
+    .masthead-right { justify-self: end; font-variant-numeric: oldstyle-nums; }
+    .masthead-brand {
+      justify-self: center;
+      font-family: 'Instrument Serif', serif;
+      font-style: italic;
+      font-size: 22px;
+      letter-spacing: 0;
+      text-transform: none;
+      color: var(--ink);
+      line-height: 1;
+    }
+    .masthead .dot {
+      display: inline-block;
+      width: 4px; height: 4px;
+      border-radius: 50%;
+      background: var(--gold);
+      margin: 0 8px;
+      vertical-align: middle;
+    }
+
+    /* ==================== HERO ==================== */
+    .hero {
+      position: relative;
+      padding: 80px 40px 90px;
+      overflow: hidden;
+    }
+    .hero-grid {
+      position: relative;
+      max-width: 1280px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 1fr 1.1fr;
+      gap: 60px;
+      align-items: start;
+    }
+
+    .hero-label {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 12px;
+      letter-spacing: 0.32em;
+      text-transform: uppercase;
+      color: var(--emerald);
+      margin-bottom: 28px;
+      display: flex;
+      align-items: center;
+      gap: 14px;
+    }
+    .hero-label::before,
+    .hero-label::after {
+      content: '';
+      flex: 0 0 28px;
+      height: 1px;
+      background: var(--emerald);
+      opacity: 0.4;
+    }
+    .hero-label::after { flex: 1 1 auto; }
+
+    .hero-display {
+      font-family: 'Instrument Serif', serif;
+      font-weight: 400;
+      font-size: clamp(48px, 7.5vw, 104px);
+      line-height: 0.96;
+      letter-spacing: -0.015em;
+      color: var(--ink);
+      margin: 0 0 34px;
+    }
+    .hero-display em {
+      font-style: italic;
+      color: var(--emerald);
+    }
+    .hero-display .amp {
+      font-style: italic;
+      color: var(--gold);
+      display: inline-block;
+      transform: translateY(0.03em);
+    }
+
+    .hero-lede {
+      font-family: 'Newsreader', serif;
+      font-size: 18px;
+      line-height: 1.55;
+      color: var(--ink-soft);
+      max-width: 440px;
+      margin: 0 0 36px;
+    }
+    .hero-lede .dropcap {
+      font-family: 'Instrument Serif', serif;
+      float: left;
+      font-size: 58px;
+      line-height: 0.88;
+      padding: 6px 10px 0 0;
+      color: var(--emerald);
+      font-style: italic;
+    }
+
+    .hero-cta {
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+      align-items: flex-start;
+    }
+    .cta-link {
+      font-family: 'Instrument Serif', serif;
+      font-style: italic;
+      font-size: 24px;
+      color: var(--ink);
+      display: inline-flex;
+      align-items: center;
+      gap: 14px;
+      padding: 10px 0 6px;
+      min-height: 44px;
+      border-bottom: 1px solid var(--ink);
+      transition: gap 0.4s cubic-bezier(.2,.8,.2,1), color 0.3s;
+    }
+    .cta-link:hover { gap: 22px; color: var(--emerald); }
+    .cta-link .arrow {
+      display: inline-block;
+      width: 28px;
+      height: 1px;
+      background: currentColor;
+      position: relative;
+    }
+    .cta-link .arrow::after {
+      content: '';
+      position: absolute;
+      right: 0; top: 50%;
+      width: 8px; height: 8px;
+      border-top: 1px solid currentColor;
+      border-right: 1px solid currentColor;
+      transform: translateY(-50%) rotate(45deg);
+    }
+    .cta-meta {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 11px;
+      letter-spacing: 0.26em;
+      text-transform: uppercase;
+      color: var(--ink-mute);
+    }
+
+    /* Arabic hero column */
+    .hero-arabic {
+      position: relative;
+      min-height: 480px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .hero-arabic .arabic-bg {
+      font-family: 'Amiri', serif;
+      font-weight: 400;
+      font-size: clamp(120px, 16vw, 220px);
+      color: var(--emerald);
+      line-height: 1;
+      direction: rtl;
+      letter-spacing: -0.01em;
+      text-align: center;
+      position: relative;
+      z-index: 2;
+    }
+    .hero-arabic .arabic-bg::before {
+      content: '';
+      position: absolute;
+      inset: -8% -12%;
+      background: radial-gradient(circle, var(--paper-2) 0%, transparent 62%);
+      z-index: -1;
+    }
+    .hero-arabic .translit {
+      position: absolute;
+      bottom: 6%;
+      left: 50%;
+      transform: translateX(-50%);
+      font-family: 'Cormorant Garamond', serif;
+      font-style: italic;
+      font-size: 18px;
+      color: var(--ink-mute);
+      letter-spacing: 0.08em;
+      white-space: nowrap;
+    }
+    .hero-arabic .seal {
+      position: absolute;
+      top: 10%;
+      right: 4%;
+      width: 92px;
+      height: 92px;
+      opacity: 0.85;
+    }
+
+    /* ==================== ORNAMENT ==================== */
+    .ornament {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 18px;
+      padding: 18px 0;
+      color: var(--gold);
+    }
+    .ornament .line {
+      width: 80px;
+      height: 1px;
+      background: currentColor;
+      opacity: 0.5;
+    }
+    .ornament .glyph {
+      font-family: 'Instrument Serif', serif;
+      font-size: 22px;
+      letter-spacing: 0.4em;
+      padding-right: 0;
+    }
+
+    /* ==================== CHAPTER ==================== */
+    .chapter {
+      position: relative;
+      padding: 80px 40px;
+      border-top: 1px solid var(--rule-soft);
+    }
+    .chapter-inner {
+      position: relative;
+      max-width: 1080px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 180px 1fr 200px;
+      gap: 40px;
+      align-items: start;
+    }
+    .folio {
+      font-family: 'Cormorant Garamond', serif;
+      font-style: italic;
+      font-size: 14px;
+      color: var(--ink-mute);
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      padding-top: 18px;
+      border-top: 1px solid var(--ink);
+    }
+    .chapter-body {
+      max-width: 560px;
+    }
+    .chapter-title {
+      font-family: 'Instrument Serif', serif;
+      font-weight: 400;
+      font-size: clamp(32px, 4.5vw, 54px);
+      line-height: 1.05;
+      letter-spacing: -0.01em;
+      color: var(--ink);
+      margin: 0 0 28px;
+    }
+    .chapter-title em {
+      font-style: italic;
+      color: var(--emerald);
+    }
+    .chapter-body p {
+      margin: 0 0 18px;
+      color: var(--ink-soft);
+      font-size: 18px;
+      line-height: 1.65;
+    }
+    .chapter-body p strong { color: var(--ink); font-weight: 500; }
+    .chapter-body p em {
+      font-family: 'Amiri', serif;
+      font-style: normal;
+      color: var(--oxblood);
+    }
+
+    .marginalia {
+      font-family: 'Cormorant Garamond', serif;
+      font-style: italic;
+      font-size: 15px;
+      line-height: 1.5;
+      color: var(--ink-mute);
+      padding-top: 22px;
+      position: relative;
+      padding-left: 16px;
+    }
+    .marginalia::before {
+      content: '❦';
+      position: absolute;
+      top: 18px;
+      left: 0;
+      color: var(--gold);
+      font-size: 14px;
+    }
+    .marginalia strong {
+      font-family: 'Amiri', serif;
+      font-style: normal;
+      color: var(--oxblood);
+      font-weight: 400;
+    }
+
+    /* ==================== FEATURE LIST ==================== */
+    .feature-list {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+    .feature-list li {
+      display: grid;
+      grid-template-columns: 60px 1fr;
+      gap: 24px;
+      padding: 26px 0;
+      border-top: 1px solid var(--rule-soft);
+      align-items: baseline;
+    }
+    .feature-list li:first-child { border-top: 1px solid var(--ink); }
+    .feature-list li:last-child { border-bottom: 1px solid var(--rule); }
+    .feature-list .roman {
+      font-family: 'Instrument Serif', serif;
+      font-style: italic;
+      font-size: 28px;
+      color: var(--gold);
+      line-height: 1;
+    }
+    .feature-list h3 {
+      font-family: 'Instrument Serif', serif;
+      font-weight: 400;
+      font-size: 24px;
+      margin: 0 0 6px;
+      color: var(--ink);
+      letter-spacing: -0.005em;
+    }
+    .feature-list p {
+      margin: 0;
+      font-size: 16px;
+      color: var(--ink-soft);
+      line-height: 1.55;
+      max-width: 520px;
+    }
+
+    /* ==================== DUALITY (DAWN / DUSK) ==================== */
+    .duality {
+      position: relative;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      min-height: 520px;
+      margin: 60px 0;
+      overflow: hidden;
+      border-top: 1px solid var(--rule-soft);
+      border-bottom: 1px solid var(--rule-soft);
+    }
+    .duality > div {
+      position: relative;
+      padding: 70px 50px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      min-height: 460px;
+    }
+    .dawn-panel {
+      background:
+        radial-gradient(120% 90% at 30% 80%, rgba(244, 198, 160, 0.55), transparent 65%),
+        linear-gradient(180deg, #f6ead1 0%, #f0d7b3 100%);
+      color: var(--ink);
+    }
+    .dusk-panel {
+      background:
+        radial-gradient(120% 90% at 70% 20%, rgba(60, 78, 120, 0.55), transparent 65%),
+        linear-gradient(180deg, #1c2740 0%, #0e1528 100%);
+      color: #e8dfc9;
+    }
+    .duality .time-label {
+      font-family: 'Cormorant Garamond', serif;
+      font-style: italic;
+      font-size: 13px;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      opacity: 0.75;
+    }
+    .duality .time-arabic {
+      font-family: 'Amiri', serif;
+      font-size: 88px;
+      line-height: 1;
+      direction: rtl;
+      margin: 24px 0;
+    }
+    .dawn-panel .time-arabic { color: var(--emerald); }
+    .dusk-panel .time-arabic { color: #d4b16a; }
+    .duality h3 {
+      font-family: 'Instrument Serif', serif;
+      font-style: italic;
+      font-weight: 400;
+      font-size: 40px;
+      margin: 0 0 14px;
+      line-height: 1;
+    }
+    .duality p {
+      font-family: 'Newsreader', serif;
+      font-size: 16px;
+      line-height: 1.55;
+      max-width: 380px;
+      margin: 0;
+      opacity: 0.9;
+    }
+    .duality .corner {
+      position: absolute;
+      top: 24px;
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 11px;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      opacity: 0.6;
+    }
+    .dawn-panel .corner { left: 50px; }
+    .dusk-panel .corner { right: 50px; }
+
+    /* Horizon seam between panels */
+    .duality::before {
+      content: '';
+      position: absolute;
+      top: 0; bottom: 0;
+      left: 50%;
+      width: 1px;
+      background: linear-gradient(180deg, transparent, rgba(166, 130, 58, 0.5), transparent);
+      z-index: 3;
+    }
+
+    /* ==================== MANIFESTO ==================== */
+    .manifesto {
+      padding: 100px 40px 110px;
+      text-align: center;
+      border-top: 1px solid var(--rule-soft);
+      position: relative;
+    }
+    .manifesto blockquote {
+      margin: 0 auto;
+      max-width: 900px;
+      font-family: 'Instrument Serif', serif;
+      font-style: italic;
+      font-size: clamp(36px, 5.5vw, 72px);
+      line-height: 1.1;
+      letter-spacing: -0.015em;
+      color: var(--emerald);
+    }
+    .manifesto blockquote .accent { color: var(--gold); font-style: normal; }
+    .manifesto .attribution {
+      margin-top: 36px;
+      font-family: 'Cormorant Garamond', serif;
+      font-style: italic;
+      font-size: 14px;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--ink-mute);
+    }
+
+    /* ==================== COLOPHON / FOOTER ==================== */
+    .colophon {
+      background: var(--emerald-dk);
+      color: #d4c9ac;
+      padding: 72px 40px 44px;
+      position: relative;
+    }
+    .colophon::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, var(--gold), transparent);
+    }
+    .colophon-inner {
+      max-width: 1080px;
+      margin: 0 auto;
+    }
+    .colophon-top {
+      display: grid;
+      grid-template-columns: 1.4fr 1fr 1fr 1fr;
+      gap: 40px;
+      padding-bottom: 56px;
+      border-bottom: 1px solid rgba(212, 201, 172, 0.15);
+    }
+    .colophon-brand {
+      font-family: 'Instrument Serif', serif;
+      font-style: italic;
+      font-size: 40px;
+      color: var(--gold-soft);
+      line-height: 1;
+      margin: 0 0 14px;
+    }
+    .colophon-tag {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 12px;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: rgba(212, 201, 172, 0.6);
+    }
+    .colophon-col h4 {
+      font-family: 'Cormorant Garamond', serif;
+      font-style: italic;
+      font-size: 12px;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      color: rgba(212, 201, 172, 0.5);
+      margin: 0 0 10px;
+      font-weight: 400;
+    }
+    .colophon-col p {
+      font-family: 'Newsreader', serif;
+      font-size: 16px;
+      color: #d4c9ac;
+      margin: 0;
+      line-height: 1.4;
+    }
+    .colophon-col a {
+      color: inherit;
+      transition: color 0.3s;
+    }
+    .colophon-col a:hover { color: var(--gold-soft); }
+
+    .colophon-bottom {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding-top: 28px;
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 12px;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: rgba(212, 201, 172, 0.55);
+      flex-wrap: wrap;
+      gap: 18px;
+    }
+    .colophon-bottom nav {
+      display: flex;
+      gap: 28px;
+    }
+    .colophon-bottom nav a {
+      color: rgba(212, 201, 172, 0.75);
+      transition: color 0.3s;
+      display: inline-flex;
+      align-items: center;
+      min-height: 44px;
+      padding: 6px 2px;
+    }
+    .colophon-col a { display: inline-block; padding: 4px 0; min-height: 28px; }
+    .colophon-bottom nav a:hover { color: var(--gold-soft); }
+
+    /* ==================== ENTRANCE ANIMATIONS ==================== */
+    @keyframes rise {
+      from { opacity: 0; transform: translateY(16px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+    @keyframes unblur {
+      from { opacity: 0; filter: blur(6px); transform: scale(0.98); }
+      to   { opacity: 1; filter: blur(0);   transform: scale(1); }
+    }
+    @keyframes widen {
+      from { transform: scaleX(0); }
+      to   { transform: scaleX(1); }
+    }
+
+    .masthead > * { animation: rise 0.9s 0.05s both cubic-bezier(.2,.8,.2,1); }
+    .hero-label { animation: rise 0.9s 0.15s both cubic-bezier(.2,.8,.2,1); }
+    .hero-label::before { animation: widen 0.9s 0.3s both cubic-bezier(.2,.8,.2,1); transform-origin: left; }
+    .hero-display { animation: rise 1s 0.3s both cubic-bezier(.2,.8,.2,1); }
+    .hero-lede { animation: rise 1s 0.5s both cubic-bezier(.2,.8,.2,1); }
+    .hero-cta { animation: rise 1s 0.65s both cubic-bezier(.2,.8,.2,1); }
+    .hero-arabic .arabic-bg { animation: unblur 1.6s 0.45s both cubic-bezier(.2,.8,.2,1); }
+    .hero-arabic .translit { animation: rise 1s 0.95s both cubic-bezier(.2,.8,.2,1); }
+    .hero-arabic .seal { animation: rise 1s 1.05s both cubic-bezier(.2,.8,.2,1); }
+
+    /* ==================== REVEAL ON SCROLL ==================== */
+    .reveal { opacity: 0; transform: translateY(24px); transition: opacity 0.9s cubic-bezier(.2,.8,.2,1), transform 0.9s cubic-bezier(.2,.8,.2,1); }
+    .reveal.visible { opacity: 1; transform: translateY(0); }
+
+    /* ==================== RESPONSIVE ==================== */
+    @media (max-width: 960px) {
+      .masthead { padding: 18px 22px; font-size: 10px; }
+      .masthead-brand { font-size: 18px; }
+      .hero { padding: 50px 22px 70px; }
+      .hero-grid { grid-template-columns: 1fr; gap: 36px; }
+      .hero-arabic { min-height: 280px; order: -1; }
+      .hero-arabic .seal { width: 64px; height: 64px; }
+      .chapter { padding: 56px 22px; }
+      .chapter-inner { grid-template-columns: 1fr; gap: 18px; }
+      .folio { padding-top: 0; border-top: none; border-left: 1px solid var(--ink); padding-left: 14px; }
+      .marginalia { padding-top: 14px; }
+      .duality { grid-template-columns: 1fr; margin: 30px 0; }
+      .duality::before { top: 50%; left: 0; right: 0; bottom: auto; width: 100%; height: 1px; background: linear-gradient(90deg, transparent, rgba(166, 130, 58, 0.5), transparent); }
+      .duality > div { min-height: 340px; padding: 50px 32px; }
+      .duality .time-arabic { font-size: 60px; }
+      .manifesto { padding: 70px 22px; }
+      .colophon { padding: 56px 22px 36px; }
+      .colophon-top { grid-template-columns: 1fr; gap: 28px; padding-bottom: 36px; }
+      .colophon-brand { font-size: 32px; }
+      .colophon-bottom { flex-direction: column; align-items: flex-start; }
+      .feature-list li { grid-template-columns: 40px 1fr; gap: 14px; padding: 20px 0; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after {
+        animation-duration: 0.01ms !important;
+        transition-duration: 0.01ms !important;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <a href="#main" class="skip-link">Langkau ke kandungan</a>
+
+  <!-- MASTHEAD -->
+  <header class="masthead">
+    <div class="masthead-left">Vol. I <span class="dot"></span> Edisi Digital</div>
+    <div class="masthead-brand">Al-Mathurat</div>
+    <div class="masthead-right">1447 AH &nbsp;·&nbsp; 2026 CE</div>
+  </header>
+
+  <main id="main">
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-grid">
+      <div class="hero-text">
+        <div class="hero-label"><span>Wazifah Kubra · Edisi Digital</span></div>
+        <h1 class="hero-display">
+          <em>Kitab</em> zikir,<br/>
+          pagi <span class="amp">&amp;</span><br/>
+          petang.
+        </h1>
+        <p class="hero-lede">
+          <span class="dropcap">H</span>impunan wirid harian susunan Imam Hassan al-Banna — ditertibkan semula dalam bentuk digital, berpandukan PDF Al-Mathurat Kubra yang diterbitkan oleh JAKIM. Teks Arab, transliterasi rumi, dan terjemahan Melayu dalam satu aplikasi yang tenang.
+        </p>
+        <div class="hero-cta">
+          <a href="#" class="cta-link">
+            <span>Muat turun di App Store</span>
+            <span class="arrow" aria-hidden="true"></span>
+          </a>
+          <div class="cta-meta">Percuma &nbsp;·&nbsp; Tanpa iklan &nbsp;·&nbsp; Tanpa pengumpulan data</div>
+        </div>
+      </div>
+
+      <div class="hero-arabic">
+        <svg class="seal" width="92" height="92" viewBox="0 0 100 100" aria-hidden="true">
+          <defs>
+            <pattern id="grid8" width="12.5" height="12.5" patternUnits="userSpaceOnUse">
+              <path d="M0,6.25 L12.5,6.25 M6.25,0 L6.25,12.5" stroke="#a6823a" stroke-width="0.3" opacity="0.4"/>
+            </pattern>
+          </defs>
+          <circle cx="50" cy="50" r="46" fill="none" stroke="#a6823a" stroke-width="0.6" opacity="0.6"/>
+          <circle cx="50" cy="50" r="38" fill="none" stroke="#a6823a" stroke-width="0.4" opacity="0.5"/>
+          <g stroke="#a6823a" stroke-width="0.5" fill="none" opacity="0.7">
+            <path d="M50,10 L50,90 M10,50 L90,50 M22,22 L78,78 M78,22 L22,78"/>
+            <path d="M50,18 L62,50 L50,82 L38,50 Z"/>
+            <path d="M18,50 L50,38 L82,50 L50,62 Z"/>
+          </g>
+          <circle cx="50" cy="50" r="4" fill="#a6823a" opacity="0.85"/>
+        </svg>
+        <div class="arabic-bg">الْمَأْثُورَات</div>
+        <div class="translit">al-ma'thūrāt &nbsp;—&nbsp; that which is transmitted</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ORNAMENT -->
+  <div class="ornament" aria-hidden="true">
+    <span class="line"></span>
+    <span class="glyph">⁂</span>
+    <span class="line"></span>
+  </div>
+
+  <!-- CHAPTER I : TENTANG -->
+  <section class="chapter reveal">
+    <div class="chapter-inner">
+      <div class="folio">§ I · Asas</div>
+      <div class="chapter-body">
+        <h2 class="chapter-title"><em>Tentang</em> al-Mathurat.</h2>
+        <p>Perkataan <em>ma'thūr</em> (مأثور) berasal dari bahasa Arab, bermaksud <em>"yang diriwayatkan"</em>. Al-Mathurat adalah himpunan zikir, doa, dan wirid yang dipetik daripada al-Quran dan hadis-hadis sahih — yang diamalkan oleh Rasulullah ﷺ dan diajarkan kepada para sahabat.</p>
+        <p>Risalah ini disusun oleh <strong>Imam Hassan al-Banna (1906–1949)</strong> sebagai panduan zikir harian, agar setiap Muslim dapat mengingati Allah secara istiqamah pada waktu pagi dan petang.</p>
+      </div>
+      <aside class="marginalia">
+        <strong>Nota kaki:</strong> Aplikasi ini menggunakan susunan <em>Wazifah Kubra</em> — versi lengkap — dipetik dari PDF Al-Mathurat Kubra yang diterbitkan JAKIM. Projek komuniti oleh Techsamana; tiada kaitan rasmi dengan JAKIM.
+      </aside>
+    </div>
+  </section>
+
+  <!-- CHAPTER II : FEATURES -->
+  <section class="chapter reveal">
+    <div class="chapter-inner">
+      <div class="folio">§ II · Ciri</div>
+      <div class="chapter-body" style="max-width: 720px;">
+        <h2 class="chapter-title">Enam <em>ciri</em>.</h2>
+        <ol class="feature-list">
+          <li>
+            <span class="roman">I</span>
+            <div>
+              <h3>Sumber teks JAKIM</h3>
+              <p>Teks Wazifah Kubra (versi lengkap) dipetik dari PDF Al-Mathurat Kubra terbitan Jabatan Kemajuan Islam Malaysia.</p>
+            </div>
+          </li>
+          <li>
+            <span class="roman">II</span>
+            <div>
+              <h3>Tiga lapisan teks</h3>
+              <p>Teks Arab, transliterasi rumi, dan terjemahan Bahasa Melayu — selari untuk rujukan pantas.</p>
+            </div>
+          </li>
+          <li>
+            <span class="roman">III</span>
+            <div>
+              <h3>Tasbih digital</h3>
+              <p>Pembilang bacaan automatik yang halus — tidak perlu tasbih fizikal di tangan.</p>
+            </div>
+          </li>
+          <li>
+            <span class="roman">IV</span>
+            <div>
+              <h3>Mod Subuh &amp; Maghrib</h3>
+              <p>Paparan dikhususkan untuk pagi dan petang — lembut pada mata pada setiap waktu.</p>
+            </div>
+          </li>
+          <li>
+            <span class="roman">V</span>
+            <div>
+              <h3>Reka bentuk satu tangan</h3>
+              <p>Swipe kiri atau kanan untuk beralih doa. Sambung dari tempat terakhir, secara automatik.</p>
+            </div>
+          </li>
+          <li>
+            <span class="roman">VI</span>
+            <div>
+              <h3>Sepenuhnya peribadi</h3>
+              <p>Tiada pendaftaran, tiada pengesanan, tiada iklan. Catatan kekal pada peranti anda sahaja.</p>
+            </div>
+          </li>
+        </ol>
+      </div>
+      <aside class="marginalia">
+        Direka untuk bacaan tunggal — satu skrol, satu tangan, satu niat.
+      </aside>
+    </div>
+  </section>
+
+  <!-- DUALITY : DAWN / DUSK -->
+  <section class="duality reveal">
+    <div class="dawn-panel">
+      <div class="corner">Subuh · Morning</div>
+      <div>
+        <div class="time-label">— al-fajr</div>
+        <div class="time-arabic">الفَجْر</div>
+        <h3>Mulakan hari<br/>dengan zikir.</h3>
+      </div>
+      <p>Mod pagi — warna parchment yang lembut, direka untuk bacaan selepas Subuh hingga tengah hari. Skrin kekal terjaga. Kaunter mengiringi nafas bacaan anda.</p>
+    </div>
+    <div class="dusk-panel">
+      <div class="corner">Maghrib · Evening</div>
+      <div>
+        <div class="time-label">— al-maghrib</div>
+        <div class="time-arabic">المَغْرِب</div>
+        <h3>Tutup hari<br/>dengan zikir.</h3>
+      </div>
+      <p>Mod petang — palet malam yang gelap dan hangat, untuk bacaan selepas Asar hingga malam. Tiada cahaya terang, tiada gangguan — hanya teks dan bacaan.</p>
+    </div>
+  </section>
+
+  <!-- MANIFESTO -->
+  <section class="manifesto reveal">
+    <blockquote>
+      <em>Mulakan hari<br/>dengan zikir<span class="accent">.</span></em>
+      <br/>
+      <em>Tutup hari<br/>dengan zikir<span class="accent">.</span></em>
+    </blockquote>
+    <div class="attribution">— Niat Wazifah Kubra</div>
+  </section>
+
+  </main>
+
+  <!-- COLOPHON / FOOTER -->
+  <footer class="colophon">
+    <div class="colophon-inner">
+      <div class="colophon-top">
+        <div>
+          <div class="colophon-brand">Al-Mathurat</div>
+          <div class="colophon-tag">Wazifah Kubra · iOS</div>
+        </div>
+        <div class="colophon-col">
+          <h4>Penerbit</h4>
+          <p>Techsamana<br/>Kuala Lumpur</p>
+        </div>
+        <div class="colophon-col">
+          <h4>Sumber teks</h4>
+          <p>JAKIM<br/>Hassan al-Banna</p>
+        </div>
+        <div class="colophon-col">
+          <h4>Hubungi</h4>
+          <p><a class="ul-link" href="mailto:mohdhaaziq@gmail.com">mohdhaaziq@<br/>gmail.com</a></p>
+        </div>
+      </div>
+      <div class="colophon-bottom">
+        <div>© 2026 Techsamana · Al-Mathurat: Wazifah Kubra</div>
+        <nav>
+          <a class="ul-link" href="./privacy.html">Privacy</a>
+          <a class="ul-link" href="./support.html">Support</a>
+          <a class="ul-link" href="mailto:mohdhaaziq@gmail.com">Contact</a>
+        </nav>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    // Scroll-triggered reveal
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.12, rootMargin: '0px 0px -60px 0px' });
+
+    document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+  </script>
+
+</body>
+</html>

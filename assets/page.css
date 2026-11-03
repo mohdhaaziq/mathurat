@@ -1,0 +1,184 @@
+/* Gaya halaman dalaman (privasi, bantuan) — token sama dgn app & index.html.
+   Subuh lalai; .evening = Maghrib. */
+:root {
+  --background: 200 40% 96%;
+  --foreground: 210 35% 14%;
+  --card: 190 50% 98%;
+  --primary: 195 58% 42%;
+  --primary-foreground: 200 40% 98%;
+  --secondary: 200 35% 90%;
+  --muted-foreground: 210 18% 40%;
+  --border: 200 25% 84%;
+  --atmos-top: radial-gradient(ellipse 80% 60% at 80% -10%, hsl(30 85% 75% / 0.45), transparent 60%);
+  --card-shadow: 0 1px 0 0 rgb(0 0 0 / 0.015), 0 20px 60px -24px rgb(20 50 70 / 0.22);
+  --ribbon: linear-gradient(to left, hsl(195 85% 60% / 0.6) 0%, hsl(28 85% 72% / 0.45) 40%, transparent 100%);
+
+  --serif: "Playfair Display", ui-serif, Georgia, serif;
+  --sans: "Inter Tight", system-ui, -apple-system, sans-serif;
+  --gutter: clamp(16px, 5vw, 56px);
+}
+.evening {
+  --background: 22 55% 94%;
+  --foreground: 15 45% 16%;
+  --card: 24 65% 97%;
+  --primary: 12 68% 48%;
+  --primary-foreground: 22 55% 98%;
+  --secondary: 20 45% 88%;
+  --muted-foreground: 15 22% 38%;
+  --border: 18 32% 82%;
+  --atmos-top: radial-gradient(ellipse 85% 65% at 80% -10%, hsl(18 90% 68% / 0.55), transparent 60%);
+  --card-shadow: 0 1px 0 0 rgb(0 0 0 / 0.02), 0 20px 60px -24px rgb(90 30 20 / 0.24);
+  --ribbon: linear-gradient(to left, hsl(12 90% 55% / 0.85) 0%, hsl(350 75% 60% / 0.55) 45%, transparent 100%);
+}
+
+/* Dwibahasa: kandungan bertanda data-l disorok ikut bahasa aktif */
+html[data-lang="ms"] [data-l="en"],
+html[data-lang="en"] [data-l="ms"] { display: none !important; }
+
+* { box-sizing: border-box; }
+html, body { margin: 0; }
+body {
+  font-family: var(--sans);
+  font-size: 17px;
+  line-height: 1.65;
+  letter-spacing: -0.005em;
+  color: hsl(var(--foreground));
+  background-color: hsl(var(--background));
+  background-image: var(--atmos-top);
+  background-repeat: no-repeat;
+  background-size: 100% 90vh;
+  -webkit-font-smoothing: antialiased;
+  transition: background-color 450ms ease, color 450ms ease;
+}
+::selection { background: hsl(var(--primary) / 0.25); }
+a { color: inherit; }
+:focus-visible { outline: 2px solid hsl(var(--primary) / 0.6); outline-offset: 3px; border-radius: 8px; }
+.skip {
+  position: absolute; left: 16px; top: -60px; z-index: 10;
+  background: hsl(var(--foreground)); color: hsl(var(--background));
+  padding: 10px 16px; border-radius: 999px; text-decoration: none; font-weight: 500;
+}
+.skip:focus { top: 12px; }
+
+.wrap { max-width: 1160px; margin: 0 auto; padding-left: var(--gutter); padding-right: var(--gutter); }
+
+/* ---------- Bar atas ---------- */
+.top { position: relative; display: flex; align-items: center; justify-content: space-between; gap: 16px; padding-top: 20px; padding-bottom: 20px; }
+.ribbon { position: absolute; top: 0; right: 0; width: 60%; height: 1px; background: var(--ribbon); }
+.wordmark {
+  font-family: var(--serif); font-weight: 600; font-size: 22px; letter-spacing: -0.01em;
+  text-decoration: none; display: flex; align-items: center; gap: 10px;
+}
+.wordmark img { width: 32px; height: 32px; border-radius: 9px; }
+.top-actions { display: flex; align-items: center; gap: 10px; }
+.seg {
+  display: inline-flex; padding: 4px; gap: 2px; border-radius: 999px;
+  background: hsl(var(--secondary) / 0.8);
+  border: 1px solid hsl(var(--foreground) / 0.06);
+}
+.seg button {
+  appearance: none; border: 0; cursor: pointer;
+  display: inline-flex; align-items: center; gap: 6px;
+  min-height: 34px; padding: 0 12px; border-radius: 999px;
+  background: transparent; font: 500 14px/1 var(--sans);
+  color: hsl(var(--muted-foreground));
+  transition: background-color 300ms ease, color 300ms ease;
+}
+.seg button[aria-pressed="true"] {
+  background: hsl(var(--card)); color: hsl(var(--foreground));
+  box-shadow: 0 1px 2px rgb(0 0 0 / 0.06), 0 6px 16px -8px rgb(0 0 0 / 0.18);
+}
+.seg svg { width: 15px; height: 15px; }
+
+/* ---------- Artikel ---------- */
+.page { padding-top: clamp(32px, 6vw, 72px); padding-bottom: clamp(56px, 8vw, 96px); }
+.col { max-width: 700px; }
+.page h1 {
+  font-family: var(--serif); font-weight: 600;
+  font-size: clamp(44px, 7vw, 80px); line-height: 1; letter-spacing: -0.025em;
+  margin: 0;
+}
+.page .meta { margin: 16px 0 0; font-size: 14px; font-weight: 500; color: hsl(var(--muted-foreground)); }
+.page .lede { margin: 24px 0 0; font-size: clamp(18px, 1.6vw, 20px); line-height: 1.55; max-width: 34em; }
+
+.card {
+  background: hsl(var(--card));
+  border: 1px solid hsl(var(--foreground) / 0.06);
+  border-radius: 26px;
+  box-shadow: var(--card-shadow);
+  padding: clamp(22px, 3vw, 30px);
+  margin-top: 36px;
+}
+.page .card h2 { margin-top: 0; }
+.card p:last-child, .card ul:last-child { margin-bottom: 0; }
+
+.page h2 {
+  font-family: var(--serif); font-weight: 600;
+  font-size: clamp(26px, 2.6vw, 32px); line-height: 1.15; letter-spacing: -0.01em;
+  margin: 52px 0 14px;
+}
+.page h3 { font-size: 18px; font-weight: 600; margin: 28px 0 6px; }
+.page p { margin: 0 0 14px; }
+.page ul { margin: 0 0 14px; padding-left: 1.2em; }
+.page li { margin: 6px 0; padding-left: 4px; }
+.page li::marker { color: hsl(var(--primary)); }
+.page strong { font-weight: 600; }
+.page a:not(.btn) { color: hsl(var(--primary)); text-underline-offset: 3px; text-decoration-thickness: 1px; }
+.muted { color: hsl(var(--muted-foreground)); }
+
+/* Senarai kebenaran: istilah + penerangan */
+.page .perms { margin: 8px 0 0; padding: 0; list-style: none; border-top: 1px solid hsl(var(--foreground) / 0.1); }
+.page .perms li { margin: 0; padding: 14px 0; border-bottom: 1px solid hsl(var(--foreground) / 0.1); display: grid; grid-template-columns: minmax(0, 200px) minmax(0, 1fr); gap: 6px 24px; }
+.perms b { font-weight: 600; }
+.perms span { color: hsl(var(--muted-foreground)); }
+
+/* Butang */
+.btn {
+  display: inline-flex; align-items: center; gap: 10px;
+  min-height: 50px; padding: 0 22px; border-radius: 999px;
+  text-decoration: none; font-weight: 600; font-size: 16px;
+  background: hsl(var(--primary)); color: hsl(var(--primary-foreground));
+  box-shadow: 0 10px 24px -12px hsl(var(--primary) / 0.7);
+  transition: transform 200ms ease;
+}
+.btn:hover { transform: translateY(-1px); }
+.btn svg { width: 18px; height: 18px; }
+.btn--quiet { background: hsl(var(--card)); color: hsl(var(--foreground)); border: 1px solid hsl(var(--border)); box-shadow: none; }
+.actions { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 20px; }
+
+/* ---------- Soalan lazim ---------- */
+.faq { margin-top: 18px; border-top: 1px solid hsl(var(--foreground) / 0.1); }
+.faq details { border-bottom: 1px solid hsl(var(--foreground) / 0.1); }
+.faq summary {
+  list-style: none; cursor: pointer;
+  display: flex; justify-content: space-between; align-items: center; gap: 16px;
+  padding: 18px 0; font-weight: 600; font-size: 18px; line-height: 1.35;
+}
+.faq summary::-webkit-details-marker { display: none; }
+.faq summary::after {
+  content: ""; flex: none; width: 10px; height: 10px;
+  border-right: 1.8px solid hsl(var(--muted-foreground));
+  border-bottom: 1.8px solid hsl(var(--muted-foreground));
+  transform: translateY(-3px) rotate(45deg);
+  transition: transform 250ms ease;
+}
+.faq details[open] summary::after { transform: translateY(2px) rotate(-135deg); }
+.faq summary:hover { color: hsl(var(--primary)); }
+.faq .answer { padding: 0 0 20px; max-width: 36em; }
+.faq .answer > :last-child { margin-bottom: 0; }
+
+/* ---------- Kaki ---------- */
+.foot { padding-bottom: 48px; font-size: 15px; color: hsl(var(--muted-foreground)); }
+.foot-bar { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 16px; padding-top: 24px; border-top: 1px solid hsl(var(--foreground) / 0.1); }
+.foot-bar nav { display: flex; flex-wrap: wrap; gap: 6px 22px; }
+.foot-bar a { text-decoration: none; padding: 4px 0; }
+.foot-bar a:hover, .foot-bar a[aria-current="page"] { color: hsl(var(--foreground)); text-decoration: underline; text-underline-offset: 4px; }
+
+@media (max-width: 640px) {
+  .seg button { padding: 0 10px; }
+  .seg .lbl { display: none; }
+  .page .perms li { grid-template-columns: 1fr; gap: 2px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; }
+}

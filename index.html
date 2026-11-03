@@ -3,957 +3,713 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Al-Mathurat: Wazifah Kubra — Zikir pagi & petang JAKIM</title>
-  <meta name="description" content="Al-Mathurat — himpunan zikir pagi dan petang susunan Imam Hassan al-Banna, berpandukan PDF terbitan JAKIM. Teks Arab dan terjemahan Melayu. Percuma, tanpa iklan, tanpa pengumpulan data. Projek komuniti Techsamana." />
-  <meta name="theme-color" content="#0a3a2a" />
+  <title>Al-Mathurat — Zikir pagi & petang</title>
+  <meta name="description" content="Al-Mathurat: wirid pagi dan petang susunan Imam Hasan al-Banna, dengan teks Arab, terjemahan Bahasa Melayu, audio bacaan, waktu solat JAKIM, azan dan arah kiblat. Percuma, tanpa iklan, tanpa akaun. Projek komuniti Techsamana." />
+  <meta name="theme-color" content="#eef5f8" />
 
-  <meta property="og:title" content="Al-Mathurat: Wazifah Kubra" />
-  <meta property="og:description" content="Zikir pagi & petang JAKIM — teks Arab & terjemahan Melayu." />
+  <meta property="og:title" content="Al-Mathurat — Zikir pagi & petang" />
+  <meta property="og:description" content="Wirid susunan Imam Hasan al-Banna, dengan audio bacaan, waktu solat JAKIM, azan dan kiblat. Percuma, tanpa iklan." />
   <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://mathurat.haaziq.dev/" />
 
-  <link rel="icon" type="image/png" href="./assets/icon.png" />
-  <link rel="apple-touch-icon" href="./assets/icon.png" />
+  <link rel="icon" type="image/png" href="./assets/icon-192.png" />
+  <link rel="apple-touch-icon" href="./assets/icon-192.png" />
 
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400&family=Instrument+Serif:ital@0;1&family=Newsreader:ital,opsz,wght@0,6..72,300;0,6..72,400;0,6..72,500;1,6..72,300;1,6..72,400&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@400;500;600&family=JetBrains+Mono:wght@500&family=Playfair+Display:wght@500;600&family=Scheherazade+New:wght@500&display=swap" rel="stylesheet" />
 
   <style>
+    /* Token diambil terus dari app (client/src/index.css): Subuh lalai,
+       .evening = Maghrib. Ditukar ikut waktu Malaysia, sama seperti app. */
     :root {
-      --paper:      #f2e9d2;
-      --paper-2:    #ebdfc2;
-      --paper-edge: #d9caa4;
-      --ink:        #171009;
-      --ink-soft:   #3a2e1e;
-      --ink-mute:   #6b5836;
-      --emerald:    #0a3a2a;
-      --emerald-dk: #052218;
-      --gold:       #a6823a;
-      --gold-soft:  #c9a55f;
-      --dawn:       #e8a57e;
-      --dawn-2:     #f3c9a8;
-      --dusk:       #1f2a4a;
-      --oxblood:    #7a2e2a;
-      --rule:       rgba(23, 16, 9, 0.18);
-      --rule-soft:  rgba(23, 16, 9, 0.08);
+      --background: 200 40% 96%;
+      --foreground: 210 35% 14%;
+      --card: 190 50% 98%;
+      --primary: 195 58% 42%;
+      --primary-foreground: 200 40% 98%;
+      --secondary: 200 35% 90%;
+      --accent: 28 80% 62%;
+      --muted-foreground: 210 18% 40%;
+      --border: 200 25% 84%;
+      --atmos-top: radial-gradient(ellipse 80% 60% at 80% -10%, hsl(30 85% 75% / 0.45), transparent 60%);
+      --atmos-bottom: radial-gradient(ellipse 90% 40% at 15% 110%, hsl(190 70% 82% / 0.5), transparent 55%);
+      --card-shadow: 0 1px 0 0 rgb(0 0 0 / 0.015), 0 20px 60px -24px rgb(20 50 70 / 0.22);
+      --ribbon: linear-gradient(to left, hsl(195 85% 60% / 0.6) 0%, hsl(28 85% 72% / 0.45) 40%, transparent 100%);
+
+      --serif: "Playfair Display", ui-serif, Georgia, serif;
+      --sans: "Inter Tight", system-ui, -apple-system, sans-serif;
+      --arabic: "Scheherazade New", "Amiri", serif;
+      --mono: "JetBrains Mono", ui-monospace, monospace;
+      --gutter: clamp(16px, 5vw, 56px);
+    }
+    .evening, .is-petang {
+      --background: 22 55% 94%;
+      --foreground: 15 45% 16%;
+      --card: 24 65% 97%;
+      --primary: 12 68% 48%;
+      --primary-foreground: 22 55% 98%;
+      --secondary: 20 45% 88%;
+      --accent: 350 60% 58%;
+      --muted-foreground: 15 22% 38%;
+      --border: 18 32% 82%;
+      --atmos-top: radial-gradient(ellipse 85% 65% at 80% -10%, hsl(18 90% 68% / 0.55), transparent 60%);
+      --atmos-bottom: radial-gradient(ellipse 90% 45% at 15% 110%, hsl(350 70% 70% / 0.38), transparent 55%);
+      --card-shadow: 0 1px 0 0 rgb(0 0 0 / 0.02), 0 20px 60px -24px rgb(90 30 20 / 0.24);
+      --ribbon: linear-gradient(to left, hsl(12 90% 55% / 0.85) 0%, hsl(350 75% 60% / 0.55) 45%, transparent 100%);
+    }
+    /* Baris "Sehari" membawa suasana sendiri walau apa mod halaman */
+    .is-pagi {
+      --foreground: 210 35% 14%;
+      --card: 190 50% 98%;
+      --primary: 195 58% 42%;
+      --secondary: 200 35% 90%;
+      --muted-foreground: 210 18% 40%;
+      --border: 200 25% 84%;
     }
 
     * { box-sizing: border-box; }
-    html, body { margin: 0; padding: 0; }
-    html { scroll-behavior: smooth; }
-
+    html, body { margin: 0; }
     body {
-      background: var(--paper);
-      color: var(--ink);
-      font-family: 'Newsreader', 'Iowan Old Style', Georgia, serif;
-      font-weight: 400;
-      font-size: 18px;
-      line-height: 1.55;
+      font-family: var(--sans);
+      font-size: 17px;
+      line-height: 1.6;
+      letter-spacing: -0.005em;
+      color: hsl(var(--foreground));
+      background-color: hsl(var(--background));
+      background-image: var(--atmos-top), var(--atmos-bottom);
+      background-repeat: no-repeat;
+      background-size: 100% 100vh, 100% 100%;
       -webkit-font-smoothing: antialiased;
-      text-rendering: optimizeLegibility;
       overflow-x: hidden;
+      transition: background-color 450ms ease, color 450ms ease;
     }
-
-    /* Paper grain overlay */
-    body::before {
-      content: '';
+    body::after {
+      content: "";
       position: fixed;
       inset: 0;
+      z-index: -1;
       pointer-events: none;
-      z-index: 100;
-      background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='220' height='220'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 0.09 0 0 0 0 0.06 0 0 0 0 0.03 0 0 0 0.55 0'/></filter><rect width='100%25' height='100%25' filter='url(%23n)'/></svg>");
-      opacity: 0.22;
+      opacity: 0.035;
+      background-image: url("data:image/svg+xml;utf8,<svg viewBox='0 0 160 160' xmlns='http://www.w3.org/2000/svg'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 0  0 0 0 0 0  0 0 0 0 0  0 0 0 0.5 0'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>");
+      background-size: 160px 160px;
       mix-blend-mode: multiply;
     }
+    ::selection { background: hsl(var(--primary) / 0.25); }
 
-    /* Soft vignette + warm wash */
-    body::after {
-      content: '';
-      position: fixed;
-      inset: 0;
-      pointer-events: none;
-      z-index: 99;
-      background:
-        radial-gradient(140% 90% at 50% -10%, rgba(242, 233, 210, 0) 40%, rgba(140, 108, 54, 0.12) 90%),
-        radial-gradient(60% 40% at 15% 10%, rgba(248, 210, 150, 0.18), transparent 70%);
-    }
-
-    a { color: inherit; text-decoration: none; }
-
-    /* Focus rings — visible keyboard navigation */
-    *:focus { outline: none; }
-    a:focus-visible,
-    summary:focus-visible,
-    button:focus-visible,
-    [tabindex]:focus-visible {
-      outline: 2px solid var(--emerald);
+    a { color: inherit; }
+    img { display: block; max-width: 100%; }
+    :focus-visible {
+      outline: 2px solid hsl(var(--primary) / 0.6);
       outline-offset: 3px;
-      border-radius: 2px;
+      border-radius: 10px;
     }
-
-    /* Skip link — WCAG keyboard nav */
-    .skip-link {
-      position: absolute;
-      top: -48px;
-      left: 14px;
-      background: var(--ink);
-      color: var(--paper);
-      padding: 10px 18px;
-      font-family: 'Cormorant Garamond', serif;
-      font-size: 13px;
-      letter-spacing: 0.2em;
-      text-transform: uppercase;
-      z-index: 1000;
-      transition: top 0.2s ease-out;
+    .skip {
+      position: absolute; left: 16px; top: -60px; z-index: 10;
+      background: hsl(var(--foreground)); color: hsl(var(--background));
+      padding: 10px 16px; border-radius: 999px; text-decoration: none; font-weight: 500;
     }
-    .skip-link:focus { top: 14px; }
+    .skip:focus { top: 12px; }
 
-    /* Link underline style */
-    .ul-link {
+    .wrap { max-width: 1160px; margin: 0 auto; padding: 0 var(--gutter); }
+
+    /* Mod hanya-pagi / hanya-petang: teks yang bertukar dengan suasana */
+    .only-petang { display: none; }
+    .evening .only-petang { display: revert; }
+    .evening .only-pagi { display: none; }
+
+    /* ------------------------- Bar atas ------------------------- */
+    .top {
       position: relative;
-      display: inline-block;
+      display: flex; align-items: center; justify-content: space-between;
+      gap: 16px;
+      padding-top: 20px; padding-bottom: 20px;
     }
-    .ul-link::after {
-      content: '';
-      position: absolute;
-      left: 0; right: 0; bottom: -2px;
-      height: 1px;
-      background: currentColor;
-      opacity: 0.4;
-      transform-origin: left;
-      transition: transform 0.4s cubic-bezier(.2,.8,.2,1), opacity 0.3s;
+    .wordmark {
+      font-family: var(--serif); font-weight: 600; font-size: 22px;
+      letter-spacing: -0.01em; text-decoration: none;
+      display: flex; align-items: center; gap: 10px;
     }
-    .ul-link:hover::after { opacity: 0.9; transform: scaleX(1.02); }
+    .wordmark img { width: 32px; height: 32px; border-radius: 9px; }
+    .top-actions { display: flex; align-items: center; gap: 12px; }
 
-    /* ==================== MASTHEAD ==================== */
-    .masthead {
-      position: relative;
-      z-index: 2;
-      padding: 22px 40px 18px;
-      display: grid;
-      grid-template-columns: 1fr auto 1fr;
-      align-items: center;
-      gap: 20px;
-      border-bottom: 1px solid var(--rule);
-      font-family: 'Cormorant Garamond', serif;
-      font-size: 12px;
-      letter-spacing: 0.2em;
-      text-transform: uppercase;
-      color: var(--ink-soft);
+    /* Suis Pagi/Petang — salinan pil di papan pemuka app */
+    .mode {
+      display: inline-flex; padding: 4px; gap: 2px;
+      border-radius: 999px;
+      background: hsl(var(--secondary) / 0.8);
+      border: 1px solid hsl(var(--foreground) / 0.06);
     }
-    .masthead-left { justify-self: start; }
-    .masthead-right { justify-self: end; font-variant-numeric: oldstyle-nums; }
-    .masthead-brand {
-      justify-self: center;
-      font-family: 'Instrument Serif', serif;
-      font-style: italic;
-      font-size: 22px;
-      letter-spacing: 0;
-      text-transform: none;
-      color: var(--ink);
-      line-height: 1;
+    .mode button {
+      appearance: none; border: 0; cursor: pointer;
+      display: inline-flex; align-items: center; gap: 7px;
+      min-height: 36px; padding: 0 14px;
+      border-radius: 999px;
+      background: transparent;
+      font: 500 14px/1 var(--sans);
+      color: hsl(var(--muted-foreground));
+      transition: background-color 300ms ease, color 300ms ease, box-shadow 300ms ease;
     }
-    .masthead .dot {
-      display: inline-block;
-      width: 4px; height: 4px;
-      border-radius: 50%;
-      background: var(--gold);
-      margin: 0 8px;
-      vertical-align: middle;
+    .mode button[aria-pressed="true"] {
+      background: hsl(var(--card));
+      color: hsl(var(--foreground));
+      box-shadow: 0 1px 2px rgb(0 0 0 / 0.06), 0 6px 16px -8px rgb(0 0 0 / 0.18);
+    }
+    .mode svg { width: 16px; height: 16px; }
+    .top-get {
+      text-decoration: none; font-weight: 500; font-size: 15px;
+      color: hsl(var(--primary));
+      padding: 8px 4px;
     }
 
-    /* ==================== HERO ==================== */
-    .hero {
-      position: relative;
-      padding: 80px 40px 90px;
-      overflow: hidden;
+    /* ------------------------- Hero ------------------------- */
+    .hero { position: relative; padding-bottom: clamp(56px, 8vw, 110px); }
+    .ribbon {
+      position: absolute; top: 0; right: 0; width: 60%; height: 1px;
+      background: var(--ribbon);
     }
     .hero-grid {
-      position: relative;
-      max-width: 1280px;
-      margin: 0 auto;
       display: grid;
-      grid-template-columns: 1fr 1.1fr;
-      gap: 60px;
-      align-items: start;
-    }
-
-    .hero-label {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: 12px;
-      letter-spacing: 0.32em;
-      text-transform: uppercase;
-      color: var(--emerald);
-      margin-bottom: 28px;
-      display: flex;
+      grid-template-columns: minmax(0, 1fr) minmax(0, 450px);
+      gap: clamp(32px, 5vw, 64px);
       align-items: center;
-      gap: 14px;
+      padding-top: clamp(32px, 6vw, 72px);
     }
-    .hero-label::before,
-    .hero-label::after {
-      content: '';
-      flex: 0 0 28px;
-      height: 1px;
-      background: var(--emerald);
-      opacity: 0.4;
-    }
-    .hero-label::after { flex: 1 1 auto; }
-
-    .hero-display {
-      font-family: 'Instrument Serif', serif;
-      font-weight: 400;
-      font-size: clamp(48px, 7.5vw, 104px);
-      line-height: 0.96;
-      letter-spacing: -0.015em;
-      color: var(--ink);
-      margin: 0 0 34px;
-    }
-    .hero-display em {
-      font-style: italic;
-      color: var(--emerald);
-    }
-    .hero-display .amp {
-      font-style: italic;
-      color: var(--gold);
-      display: inline-block;
-      transform: translateY(0.03em);
-    }
-
-    .hero-lede {
-      font-family: 'Newsreader', serif;
-      font-size: 18px;
-      line-height: 1.55;
-      color: var(--ink-soft);
-      max-width: 440px;
-      margin: 0 0 36px;
-    }
-    .hero-lede .dropcap {
-      font-family: 'Instrument Serif', serif;
-      float: left;
-      font-size: 58px;
-      line-height: 0.88;
-      padding: 6px 10px 0 0;
-      color: var(--emerald);
-      font-style: italic;
-    }
-
-    .hero-cta {
-      display: flex;
-      flex-direction: column;
-      gap: 14px;
-      align-items: flex-start;
-    }
-    .cta-link {
-      font-family: 'Instrument Serif', serif;
-      font-style: italic;
-      font-size: 24px;
-      color: var(--ink);
-      display: inline-flex;
-      align-items: center;
-      gap: 14px;
-      padding: 10px 0 6px;
-      min-height: 44px;
-      border-bottom: 1px solid var(--ink);
-      transition: gap 0.4s cubic-bezier(.2,.8,.2,1), color 0.3s;
-    }
-    .cta-link:hover { gap: 22px; color: var(--emerald); }
-    .cta-link .arrow {
-      display: inline-block;
-      width: 28px;
-      height: 1px;
-      background: currentColor;
-      position: relative;
-    }
-    .cta-link .arrow::after {
-      content: '';
-      position: absolute;
-      right: 0; top: 50%;
-      width: 8px; height: 8px;
-      border-top: 1px solid currentColor;
-      border-right: 1px solid currentColor;
-      transform: translateY(-50%) rotate(45deg);
-    }
-    .cta-meta {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: 11px;
-      letter-spacing: 0.26em;
-      text-transform: uppercase;
-      color: var(--ink-mute);
-    }
-
-    /* Arabic hero column */
-    .hero-arabic {
-      position: relative;
-      min-height: 480px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-    }
-    .hero-arabic .arabic-bg {
-      font-family: 'Amiri', serif;
-      font-weight: 400;
-      font-size: clamp(120px, 16vw, 220px);
-      color: var(--emerald);
-      line-height: 1;
-      direction: rtl;
-      letter-spacing: -0.01em;
-      text-align: center;
-      position: relative;
-      z-index: 2;
-    }
-    .hero-arabic .arabic-bg::before {
-      content: '';
-      position: absolute;
-      inset: -8% -12%;
-      background: radial-gradient(circle, var(--paper-2) 0%, transparent 62%);
-      z-index: -1;
-    }
-    .hero-arabic .translit {
-      position: absolute;
-      bottom: 6%;
-      left: 50%;
-      transform: translateX(-50%);
-      font-family: 'Cormorant Garamond', serif;
-      font-style: italic;
-      font-size: 18px;
-      color: var(--ink-mute);
-      letter-spacing: 0.08em;
+    .hero h1 {
+      font-family: var(--serif); font-weight: 600;
+      font-size: clamp(50px, 6.8vw, 96px);
+      line-height: 0.95; letter-spacing: -0.025em;
       white-space: nowrap;
+      margin: 0;
     }
-    .hero-arabic .seal {
-      position: absolute;
-      top: 10%;
-      right: 4%;
-      width: 92px;
-      height: 92px;
-      opacity: 0.85;
+    .dateline {
+      margin: 18px 0 0;
+      display: flex; align-items: center; gap: 12px; flex-wrap: wrap;
+      font-size: 14px; font-weight: 500; letter-spacing: 0.02em;
+      color: hsl(var(--muted-foreground));
+    }
+    .dateline .sep { width: 1px; height: 14px; background: hsl(var(--foreground) / 0.18); }
+    .lede {
+      margin: 28px 0 0; max-width: 32em;
+      font-size: clamp(18px, 1.6vw, 20px); line-height: 1.55;
+    }
+    .stores { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 32px; }
+    .store {
+      display: inline-flex; align-items: center; gap: 10px;
+      min-height: 52px; padding: 0 22px 0 18px;
+      border-radius: 999px;
+      text-decoration: none;
+      font-weight: 600; font-size: 16px;
+      transition: transform 200ms ease, box-shadow 200ms ease;
+    }
+    .store svg { width: 20px; height: 20px; flex: none; }
+    .store small { display: block; font-weight: 500; font-size: 11px; opacity: 0.75; line-height: 1.1; }
+    .store span { line-height: 1.15; }
+    .store--solid {
+      background: hsl(var(--primary)); color: hsl(var(--primary-foreground));
+      box-shadow: 0 10px 24px -12px hsl(var(--primary) / 0.7);
+    }
+    .store--quiet {
+      background: hsl(var(--card)); color: hsl(var(--foreground));
+      border: 1px solid hsl(var(--border));
+    }
+    .store:hover { transform: translateY(-1px); }
+    .web-link {
+      display: inline-block; margin-top: 18px;
+      font-size: 15px; color: hsl(var(--muted-foreground));
+      text-underline-offset: 4px; text-decoration-color: hsl(var(--foreground) / 0.25);
+    }
+    .web-link:hover { color: hsl(var(--foreground)); }
+
+    /* Kad bacaan — kad sebenar dari skrin bacaan app */
+    .reader { position: relative; }
+    /* Ufuk kabus — ilustrasi kad sapaan di papan pemuka app */
+    .horizon {
+      position: absolute; left: 0; right: 0; bottom: 0; height: 62%;
+      pointer-events: none;
+      -webkit-mask-image: linear-gradient(to bottom, transparent 0%, #000 45%);
+              mask-image: linear-gradient(to bottom, transparent 0%, #000 45%);
+    }
+    .horizon img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; transition: opacity 600ms ease; }
+    .horizon .sunset { opacity: 0; }
+    .evening .horizon .sunset { opacity: 1; }
+    .evening .horizon .sunrise { opacity: 0; }
+
+    .card {
+      background: hsl(var(--card));
+      border: 1px solid hsl(var(--foreground) / 0.06);
+      border-radius: 28px;
+      box-shadow: var(--card-shadow);
+      padding: 26px 26px 22px;
+      transition: background-color 450ms ease;
+    }
+    .card-head {
+      display: flex; justify-content: space-between; align-items: baseline; gap: 12px;
+      padding-bottom: 16px;
+      border-bottom: 1px solid hsl(var(--foreground) / 0.08);
+    }
+    .card-title { font-size: 13px; font-weight: 600; letter-spacing: 0.04em; text-transform: uppercase; color: hsl(var(--muted-foreground)); }
+    .card-step { font-family: var(--mono); font-size: 13px; color: hsl(var(--muted-foreground)); font-variant-numeric: tabular-nums; }
+    .ayah {
+      font-family: var(--arabic); font-weight: 500;
+      direction: rtl; text-align: right;
+      font-size: clamp(28px, 3vw, 34px);
+      line-height: 2.05;
+      margin: 18px 0 10px;
+    }
+    .tr {
+      margin: 0; font-size: 15px; line-height: 1.6;
+      color: hsl(var(--muted-foreground));
+    }
+    .counter {
+      display: flex; align-items: center; justify-content: space-between; gap: 12px;
+      margin-top: 22px;
+    }
+    .tap {
+      appearance: none; cursor: pointer; flex: none;
+      width: 52px; height: 52px; border-radius: 50%;
+      display: grid; place-items: center;
+      font: 400 26px/1 var(--sans);
+    }
+    .tap--minus { background: transparent; border: 1px solid hsl(var(--border)); color: hsl(var(--muted-foreground)); width: 44px; height: 44px; font-size: 22px; }
+    .tap--plus {
+      border: 0; background: hsl(var(--primary)); color: hsl(var(--primary-foreground));
+      box-shadow: 0 10px 22px -10px hsl(var(--primary) / 0.8);
+    }
+    .tap:active { transform: scale(0.95); }
+    .beads {
+      flex: 1; min-height: 52px;
+      display: flex; align-items: center; justify-content: center; gap: 12px;
+      border-radius: 999px;
+      background: hsl(var(--background) / 0.7);
+      border: 1px solid hsl(var(--foreground) / 0.06);
+    }
+    .bead { width: 11px; height: 11px; border-radius: 50%; border: 1.5px solid hsl(var(--primary) / 0.45); }
+    .bead.on { background: hsl(var(--primary)); border-color: hsl(var(--primary)); }
+    .bead.pop { animation: pop 280ms ease-out; }
+    @keyframes pop { 0% { transform: scale(0.4); } 60% { transform: scale(1.35); } 100% { transform: scale(1); } }
+    .count { font-family: var(--mono); font-weight: 500; font-size: 22px; font-variant-numeric: tabular-nums; margin-left: 6px; }
+    .count small { font-size: 14px; color: hsl(var(--muted-foreground)); }
+    .card-note {
+      margin: 14px 4px 0; min-height: 1.6em;
+      font-size: 14px; color: hsl(var(--muted-foreground));
     }
 
-    /* ==================== ORNAMENT ==================== */
-    .ornament {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 18px;
-      padding: 18px 0;
-      color: var(--gold);
+    /* ------------------------- Sehari ------------------------- */
+    .day {
+      position: relative;
+      /* Langit sehari: pinggir lutsinar supaya bercantum dgn suasana halaman */
+      background: linear-gradient(180deg,
+        hsl(200 40% 96% / 0) 0%, hsl(200 40% 96%) 9%, hsl(196 42% 94%) 38%,
+        hsl(24 60% 94%) 62%, hsl(18 55% 91%) 91%, hsl(18 55% 91% / 0) 100%);
+      padding: clamp(72px, 9vw, 120px) 0;
     }
-    .ornament .line {
-      width: 80px;
-      height: 1px;
-      background: currentColor;
-      opacity: 0.5;
+    .section-head { max-width: 640px; }
+    .section-head h2, .twin h2, .get h2 {
+      font-family: var(--serif); font-weight: 600;
+      font-size: clamp(36px, 5vw, 58px);
+      line-height: 1.02; letter-spacing: -0.02em;
+      margin: 0;
     }
-    .ornament .glyph {
-      font-family: 'Instrument Serif', serif;
-      font-size: 22px;
-      letter-spacing: 0.4em;
-      padding-right: 0;
-    }
+    .section-head p { margin: 18px 0 0; font-size: 18px; color: hsl(var(--muted-foreground)); max-width: 34em; }
 
-    /* ==================== CHAPTER ==================== */
-    .chapter {
-      position: relative;
-      padding: 80px 40px;
-      border-top: 1px solid var(--rule-soft);
-    }
-    .chapter-inner {
-      position: relative;
-      max-width: 1080px;
-      margin: 0 auto;
+    .hours { list-style: none; margin: clamp(48px, 6vw, 80px) 0 0; padding: 0; }
+    .hour {
       display: grid;
-      grid-template-columns: 180px 1fr 200px;
-      gap: 40px;
+      grid-template-columns: 150px minmax(0, 1fr) minmax(0, 300px);
+      gap: clamp(20px, 4vw, 56px);
       align-items: start;
+      padding: clamp(36px, 4vw, 52px) 0;
+      border-top: 1px solid hsl(var(--foreground) / 0.1);
+      color: hsl(var(--foreground));
     }
-    .folio {
-      font-family: 'Cormorant Garamond', serif;
-      font-style: italic;
-      font-size: 14px;
-      color: var(--ink-mute);
-      letter-spacing: 0.15em;
-      text-transform: uppercase;
-      padding-top: 18px;
-      border-top: 1px solid var(--ink);
+    .hour:last-child { border-bottom: 1px solid hsl(var(--foreground) / 0.1); }
+    .when {
+      font-family: var(--serif); font-weight: 500; font-size: 22px;
+      color: hsl(var(--primary));
+      display: flex; align-items: center; gap: 10px;
+      padding-top: 4px;
     }
-    .chapter-body {
-      max-width: 560px;
-    }
-    .chapter-title {
-      font-family: 'Instrument Serif', serif;
-      font-weight: 400;
-      font-size: clamp(32px, 4.5vw, 54px);
-      line-height: 1.05;
-      letter-spacing: -0.01em;
-      color: var(--ink);
-      margin: 0 0 28px;
-    }
-    .chapter-title em {
-      font-style: italic;
-      color: var(--emerald);
-    }
-    .chapter-body p {
-      margin: 0 0 18px;
-      color: var(--ink-soft);
-      font-size: 18px;
-      line-height: 1.65;
-    }
-    .chapter-body p strong { color: var(--ink); font-weight: 500; }
-    .chapter-body p em {
-      font-family: 'Amiri', serif;
-      font-style: normal;
-      color: var(--oxblood);
-    }
-
-    .marginalia {
-      font-family: 'Cormorant Garamond', serif;
-      font-style: italic;
-      font-size: 15px;
-      line-height: 1.5;
-      color: var(--ink-mute);
-      padding-top: 22px;
-      position: relative;
-      padding-left: 16px;
-    }
-    .marginalia::before {
-      content: '❦';
-      position: absolute;
-      top: 18px;
-      left: 0;
-      color: var(--gold);
-      font-size: 14px;
-    }
-    .marginalia strong {
-      font-family: 'Amiri', serif;
-      font-style: normal;
-      color: var(--oxblood);
-      font-weight: 400;
-    }
-
-    /* ==================== FEATURE LIST ==================== */
-    .feature-list {
-      list-style: none;
-      padding: 0;
-      margin: 0;
-    }
-    .feature-list li {
-      display: grid;
-      grid-template-columns: 60px 1fr;
-      gap: 24px;
-      padding: 26px 0;
-      border-top: 1px solid var(--rule-soft);
-      align-items: baseline;
-    }
-    .feature-list li:first-child { border-top: 1px solid var(--ink); }
-    .feature-list li:last-child { border-bottom: 1px solid var(--rule); }
-    .feature-list .roman {
-      font-family: 'Instrument Serif', serif;
-      font-style: italic;
-      font-size: 28px;
-      color: var(--gold);
-      line-height: 1;
-    }
-    .feature-list h3 {
-      font-family: 'Instrument Serif', serif;
-      font-weight: 400;
-      font-size: 24px;
-      margin: 0 0 6px;
-      color: var(--ink);
-      letter-spacing: -0.005em;
-    }
-    .feature-list p {
-      margin: 0;
-      font-size: 16px;
-      color: var(--ink-soft);
-      line-height: 1.55;
-      max-width: 520px;
-    }
-
-    /* ==================== DUALITY (DAWN / DUSK) ==================== */
-    .duality {
-      position: relative;
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      min-height: 520px;
-      margin: 60px 0;
-      overflow: hidden;
-      border-top: 1px solid var(--rule-soft);
-      border-bottom: 1px solid var(--rule-soft);
-    }
-    .duality > div {
-      position: relative;
-      padding: 70px 50px;
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between;
-      min-height: 460px;
-    }
-    .dawn-panel {
-      background:
-        radial-gradient(120% 90% at 30% 80%, rgba(244, 198, 160, 0.55), transparent 65%),
-        linear-gradient(180deg, #f6ead1 0%, #f0d7b3 100%);
-      color: var(--ink);
-    }
-    .dusk-panel {
-      background:
-        radial-gradient(120% 90% at 70% 20%, rgba(60, 78, 120, 0.55), transparent 65%),
-        linear-gradient(180deg, #1c2740 0%, #0e1528 100%);
-      color: #e8dfc9;
-    }
-    .duality .time-label {
-      font-family: 'Cormorant Garamond', serif;
-      font-style: italic;
-      font-size: 13px;
-      letter-spacing: 0.25em;
-      text-transform: uppercase;
-      opacity: 0.75;
-    }
-    .duality .time-arabic {
-      font-family: 'Amiri', serif;
-      font-size: 88px;
-      line-height: 1;
-      direction: rtl;
-      margin: 24px 0;
-    }
-    .dawn-panel .time-arabic { color: var(--emerald); }
-    .dusk-panel .time-arabic { color: #d4b16a; }
-    .duality h3 {
-      font-family: 'Instrument Serif', serif;
-      font-style: italic;
-      font-weight: 400;
-      font-size: 40px;
-      margin: 0 0 14px;
-      line-height: 1;
-    }
-    .duality p {
-      font-family: 'Newsreader', serif;
-      font-size: 16px;
-      line-height: 1.55;
-      max-width: 380px;
-      margin: 0;
-      opacity: 0.9;
-    }
-    .duality .corner {
-      position: absolute;
-      top: 24px;
-      font-family: 'Cormorant Garamond', serif;
-      font-size: 11px;
-      letter-spacing: 0.22em;
-      text-transform: uppercase;
-      opacity: 0.6;
-    }
-    .dawn-panel .corner { left: 50px; }
-    .dusk-panel .corner { right: 50px; }
-
-    /* Horizon seam between panels */
-    .duality::before {
-      content: '';
-      position: absolute;
-      top: 0; bottom: 0;
-      left: 50%;
-      width: 1px;
-      background: linear-gradient(180deg, transparent, rgba(166, 130, 58, 0.5), transparent);
-      z-index: 3;
-    }
-
-    /* ==================== MANIFESTO ==================== */
-    .manifesto {
-      padding: 100px 40px 110px;
-      text-align: center;
-      border-top: 1px solid var(--rule-soft);
-      position: relative;
-    }
-    .manifesto blockquote {
-      margin: 0 auto;
-      max-width: 900px;
-      font-family: 'Instrument Serif', serif;
-      font-style: italic;
-      font-size: clamp(36px, 5.5vw, 72px);
-      line-height: 1.1;
-      letter-spacing: -0.015em;
-      color: var(--emerald);
-    }
-    .manifesto blockquote .accent { color: var(--gold); font-style: normal; }
-    .manifesto .attribution {
-      margin-top: 36px;
-      font-family: 'Cormorant Garamond', serif;
-      font-style: italic;
-      font-size: 14px;
-      letter-spacing: 0.15em;
-      text-transform: uppercase;
-      color: var(--ink-mute);
-    }
-
-    /* ==================== COLOPHON / FOOTER ==================== */
-    .colophon {
-      background: var(--emerald-dk);
-      color: #d4c9ac;
-      padding: 72px 40px 44px;
-      position: relative;
-    }
-    .colophon::before {
-      content: '';
-      position: absolute;
-      top: 0; left: 0; right: 0;
-      height: 1px;
-      background: linear-gradient(90deg, transparent, var(--gold), transparent);
-    }
-    .colophon-inner {
-      max-width: 1080px;
-      margin: 0 auto;
-    }
-    .colophon-top {
-      display: grid;
-      grid-template-columns: 1.4fr 1fr 1fr 1fr;
-      gap: 40px;
-      padding-bottom: 56px;
-      border-bottom: 1px solid rgba(212, 201, 172, 0.15);
-    }
-    .colophon-brand {
-      font-family: 'Instrument Serif', serif;
-      font-style: italic;
-      font-size: 40px;
-      color: var(--gold-soft);
-      line-height: 1;
+    .when svg { width: 18px; height: 18px; flex: none; }
+    .hour h3 {
+      font-family: var(--serif); font-weight: 600;
+      font-size: clamp(26px, 2.6vw, 32px); line-height: 1.12; letter-spacing: -0.01em;
       margin: 0 0 14px;
     }
-    .colophon-tag {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: 12px;
-      letter-spacing: 0.22em;
-      text-transform: uppercase;
-      color: rgba(212, 201, 172, 0.6);
+    .hour p { margin: 0 0 12px; max-width: 34em; }
+    .hour p:last-child { margin-bottom: 0; }
+    .shots { position: relative; }
+    .shot {
+      border-radius: 26px; overflow: hidden;
+      border: 1px solid hsl(var(--foreground) / 0.08);
+      box-shadow: var(--card-shadow);
+      background: hsl(var(--card));
+      aspect-ratio: 9 / 15;
     }
-    .colophon-col h4 {
-      font-family: 'Cormorant Garamond', serif;
-      font-style: italic;
-      font-size: 12px;
-      letter-spacing: 0.25em;
-      text-transform: uppercase;
-      color: rgba(212, 201, 172, 0.5);
-      margin: 0 0 10px;
-      font-weight: 400;
-    }
-    .colophon-col p {
-      font-family: 'Newsreader', serif;
-      font-size: 16px;
-      color: #d4c9ac;
-      margin: 0;
-      line-height: 1.4;
-    }
-    .colophon-col a {
-      color: inherit;
-      transition: color 0.3s;
-    }
-    .colophon-col a:hover { color: var(--gold-soft); }
-
-    .colophon-bottom {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding-top: 28px;
-      font-family: 'Cormorant Garamond', serif;
-      font-size: 12px;
-      letter-spacing: 0.2em;
-      text-transform: uppercase;
-      color: rgba(212, 201, 172, 0.55);
-      flex-wrap: wrap;
-      gap: 18px;
-    }
-    .colophon-bottom nav {
-      display: flex;
-      gap: 28px;
-    }
-    .colophon-bottom nav a {
-      color: rgba(212, 201, 172, 0.75);
-      transition: color 0.3s;
-      display: inline-flex;
-      align-items: center;
-      min-height: 44px;
-      padding: 6px 2px;
-    }
-    .colophon-col a { display: inline-block; padding: 4px 0; min-height: 28px; }
-    .colophon-bottom nav a:hover { color: var(--gold-soft); }
-
-    /* ==================== ENTRANCE ANIMATIONS ==================== */
-    @keyframes rise {
-      from { opacity: 0; transform: translateY(16px); }
-      to   { opacity: 1; transform: translateY(0); }
-    }
-    @keyframes unblur {
-      from { opacity: 0; filter: blur(6px); transform: scale(0.98); }
-      to   { opacity: 1; filter: blur(0);   transform: scale(1); }
-    }
-    @keyframes widen {
-      from { transform: scaleX(0); }
-      to   { transform: scaleX(1); }
+    .shot img { width: 100%; height: 100%; object-fit: cover; object-position: top; }
+    .shots--pair .shot:nth-child(2) {
+      position: absolute; width: 58%; right: -12%; bottom: -14%;
+      border-radius: 20px;
+      box-shadow: 0 24px 60px -20px rgb(20 50 70 / 0.35);
     }
 
-    .masthead > * { animation: rise 0.9s 0.05s both cubic-bezier(.2,.8,.2,1); }
-    .hero-label { animation: rise 0.9s 0.15s both cubic-bezier(.2,.8,.2,1); }
-    .hero-label::before { animation: widen 0.9s 0.3s both cubic-bezier(.2,.8,.2,1); transform-origin: left; }
-    .hero-display { animation: rise 1s 0.3s both cubic-bezier(.2,.8,.2,1); }
-    .hero-lede { animation: rise 1s 0.5s both cubic-bezier(.2,.8,.2,1); }
-    .hero-cta { animation: rise 1s 0.65s both cubic-bezier(.2,.8,.2,1); }
-    .hero-arabic .arabic-bg { animation: unblur 1.6s 0.45s both cubic-bezier(.2,.8,.2,1); }
-    .hero-arabic .translit { animation: rise 1s 0.95s both cubic-bezier(.2,.8,.2,1); }
-    .hero-arabic .seal { animation: rise 1s 1.05s both cubic-bezier(.2,.8,.2,1); }
-
-    /* ==================== REVEAL ON SCROLL ==================== */
-    .reveal { opacity: 0; transform: translateY(24px); transition: opacity 0.9s cubic-bezier(.2,.8,.2,1), transform 0.9s cubic-bezier(.2,.8,.2,1); }
-    .reveal.visible { opacity: 1; transform: translateY(0); }
-
-    /* ==================== RESPONSIVE ==================== */
-    @media (max-width: 960px) {
-      .masthead { padding: 18px 22px; font-size: 10px; }
-      .masthead-brand { font-size: 18px; }
-      .hero { padding: 50px 22px 70px; }
-      .hero-grid { grid-template-columns: 1fr; gap: 36px; }
-      .hero-arabic { min-height: 280px; order: -1; }
-      .hero-arabic .seal { width: 64px; height: 64px; }
-      .chapter { padding: 56px 22px; }
-      .chapter-inner { grid-template-columns: 1fr; gap: 18px; }
-      .folio { padding-top: 0; border-top: none; border-left: 1px solid var(--ink); padding-left: 14px; }
-      .marginalia { padding-top: 14px; }
-      .duality { grid-template-columns: 1fr; margin: 30px 0; }
-      .duality::before { top: 50%; left: 0; right: 0; bottom: auto; width: 100%; height: 1px; background: linear-gradient(90deg, transparent, rgba(166, 130, 58, 0.5), transparent); }
-      .duality > div { min-height: 340px; padding: 50px 32px; }
-      .duality .time-arabic { font-size: 60px; }
-      .manifesto { padding: 70px 22px; }
-      .colophon { padding: 56px 22px 36px; }
-      .colophon-top { grid-template-columns: 1fr; gap: 28px; padding-bottom: 36px; }
-      .colophon-brand { font-size: 32px; }
-      .colophon-bottom { flex-direction: column; align-items: flex-start; }
-      .feature-list li { grid-template-columns: 40px 1fr; gap: 14px; padding: 20px 0; }
+    /* ------------------------- Kubra / Sughra ------------------------- */
+    .twin { padding-top: clamp(72px, 9vw, 120px); padding-bottom: clamp(40px, 5vw, 64px); }
+    .twin-grid {
+      display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.1fr);
+      gap: clamp(28px, 6vw, 88px); align-items: center;
     }
+    .twin p { margin: 18px 0 0; font-size: 18px; max-width: 30em; color: hsl(var(--muted-foreground)); }
+    .wazifah {
+      display: grid; grid-template-columns: 1fr 1fr; gap: 6px;
+      padding: 6px; border-radius: 34px;
+      background: hsl(var(--secondary) / 0.8);
+      border: 1px solid hsl(var(--foreground) / 0.06);
+    }
+    .wazifah > div { border-radius: 28px; padding: 26px 24px 24px; }
+    .wazifah > div:first-child { background: hsl(var(--card)); box-shadow: var(--card-shadow); }
+    .wazifah b {
+      display: block; font-family: var(--serif); font-weight: 600;
+      font-size: clamp(56px, 7vw, 84px); line-height: 1; letter-spacing: -0.03em;
+      font-variant-numeric: lining-nums;
+    }
+    .wazifah > div:first-child b { color: hsl(var(--primary)); }
+    .wazifah strong { display: block; margin-top: 14px; font-size: 18px; font-weight: 600; }
+    .wazifah span { display: block; margin-top: 4px; font-size: 15px; color: hsl(var(--muted-foreground)); line-height: 1.45; }
 
+    .promises {
+      list-style: none; padding: 0; margin: clamp(56px, 7vw, 88px) 0 0;
+      display: grid; grid-template-columns: repeat(3, minmax(0, 1fr));
+      border-top: 1px solid hsl(var(--foreground) / 0.1);
+    }
+    .promises li { padding: 26px 28px 0 0; }
+    .promises li + li { padding-left: 28px; border-left: 1px solid hsl(var(--foreground) / 0.1); }
+    .promises strong { display: block; font-family: var(--serif); font-weight: 600; font-size: 22px; line-height: 1.2; }
+    .promises span { display: block; margin-top: 8px; font-size: 15px; color: hsl(var(--muted-foreground)); }
+
+    /* ------------------------- Muat turun ------------------------- */
+    .get { padding-top: clamp(72px, 9vw, 120px); padding-bottom: clamp(72px, 9vw, 120px); }
+    .get-inner {
+      position: relative; overflow: hidden;
+      border-radius: 36px;
+      padding: clamp(36px, 6vw, 72px);
+      background: hsl(var(--card));
+      border: 1px solid hsl(var(--foreground) / 0.06);
+      box-shadow: var(--card-shadow);
+    }
+    .get-inner .ribbon { width: 70%; }
+    .get-inner > :not(.horizon):not(.ribbon) { position: relative; }
+    .get-inner > img.icon { width: 76px; height: 76px; border-radius: 18px; box-shadow: 0 12px 30px -14px rgb(0 0 0 / 0.35); }
+    .get h2 { margin-top: 28px; max-width: 12em; }
+    .get p { margin: 14px 0 0; color: hsl(var(--muted-foreground)); max-width: 34em; }
+
+    /* ------------------------- Kaki ------------------------- */
+    .foot { padding: 0 0 48px; font-size: 15px; color: hsl(var(--muted-foreground)); }
+    .credits {
+      display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.4fr); gap: clamp(24px, 5vw, 72px);
+      padding: 40px 0; border-top: 1px solid hsl(var(--foreground) / 0.1);
+    }
+    .credits h2 { font-family: var(--serif); font-weight: 600; font-size: 22px; color: hsl(var(--foreground)); margin: 0; }
+    .credits ul { margin: 0; padding: 0; list-style: none; }
+    .credits li { padding: 6px 0; }
+    .credits li + li { border-top: 1px solid hsl(var(--foreground) / 0.06); }
+    .foot-bar {
+      display: flex; flex-wrap: wrap; justify-content: space-between; gap: 16px;
+      padding-top: 24px; border-top: 1px solid hsl(var(--foreground) / 0.1);
+    }
+    .foot-bar nav { display: flex; flex-wrap: wrap; gap: 6px 22px; }
+    .foot-bar a { text-decoration: none; padding: 4px 0; }
+    .foot-bar a:hover { color: hsl(var(--foreground)); text-decoration: underline; text-underline-offset: 4px; }
+
+    /* ------------------------- Responsif ------------------------- */
+    @media (max-width: 920px) {
+      .hero-grid, .twin-grid { grid-template-columns: 1fr; }
+      .reader { max-width: 520px; }
+      .hour { grid-template-columns: 1fr; gap: 14px; }
+      .when { padding-top: 0; }
+      .shots { max-width: 260px; margin-top: 16px; }
+      .shots--pair { margin-bottom: 40px; }
+      .shots--pair .shot:nth-child(2) { right: -38%; }
+      .promises { grid-template-columns: 1fr; }
+      .promises li, .promises li + li { padding: 20px 0; border-left: 0; }
+      .promises li + li { border-top: 1px solid hsl(var(--foreground) / 0.1); }
+      .credits { grid-template-columns: 1fr; gap: 12px; }
+    }
+    @media (max-width: 560px) {
+      .top-get { display: none; }
+      .mode button { padding: 0 11px; }
+      .card { padding: 20px 18px 18px; border-radius: 24px; }
+      .wazifah { grid-template-columns: 1fr; border-radius: 30px; }
+      .store { flex: 1 1 100%; justify-content: center; }
+    }
     @media (prefers-reduced-motion: reduce) {
-      *, *::before, *::after {
-        animation-duration: 0.01ms !important;
-        transition-duration: 0.01ms !important;
-      }
+      *, *::before, *::after { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; }
     }
   </style>
 </head>
 <body>
+  <a class="skip" href="#utama">Langkau ke kandungan</a>
 
-  <a href="#main" class="skip-link">Langkau ke kandungan</a>
-
-  <!-- MASTHEAD -->
-  <header class="masthead">
-    <div class="masthead-left">Vol. I <span class="dot"></span> Edisi Digital</div>
-    <div class="masthead-brand">Al-Mathurat</div>
-    <div class="masthead-right">1447 AH &nbsp;·&nbsp; 2026 CE</div>
+  <header class="wrap top">
+    <a class="wordmark" href="./" aria-label="Al-Mathurat, laman utama">
+      <img src="./assets/icon-192.png" alt="" width="32" height="32" />
+      Al-Mathurat
+    </a>
+    <div class="top-actions">
+      <div class="mode" role="group" aria-label="Suasana halaman">
+        <button type="button" data-mode="pagi" aria-pressed="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg>
+          Pagi
+        </button>
+        <button type="button" data-mode="petang" aria-pressed="false">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 14.5A8 8 0 0 1 9.5 4a8 8 0 1 0 10.5 10.5z"/></svg>
+          Petang
+        </button>
+      </div>
+      <a class="top-get" href="#muat-turun">Muat turun</a>
+    </div>
   </header>
 
-  <main id="main">
+  <main id="utama">
+    <section class="hero">
+      <div class="ribbon" aria-hidden="true"></div>
+      <div class="wrap hero-grid">
+        <div>
+          <h1>Al-Mathurat</h1>
+          <p class="dateline">
+            <span id="tarikh">Zikir pagi &amp; petang</span>
+            <span class="sep" aria-hidden="true"></span>
+            <span>Wazifah Kubra &amp; Sughra</span>
+          </p>
+          <p class="lede">Wirid harian susunan Imam Hasan al-Banna, dengan teks Arab dan terjemahan Bahasa Melayu. Dengar bacaan penuh, kira zikir dengan manik tasbih, dan dapatkan waktu solat untuk zon anda.</p>
+          <div class="stores">
+            <a class="store store--solid" href="https://apps.apple.com/my/app/id6762747747">
+              <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.05 20.28c-.98.95-2.05.86-3.12.34-1.12-.55-2.15-.59-3.34 0-1.49.71-2.32.5-3.21-.34C2.78 15.36 3.43 7.85 9.05 7.55c1.37.07 2.32.74 3.13.79 1.21-.21 2.36-.86 3.66-.77 1.5.12 2.64.71 3.39 1.78-3.13 1.87-2.38 5.98.48 7.13-.57 1.46-1.3 2.91-2.66 3.79zM12.03 7.5c-.15-2.23 1.66-4.07 3.74-4.25.27 2.5-2.32 4.46-3.74 4.25z"/></svg>
+              <span><small>Muat turun di</small>App Store</span>
+            </a>
+            <a class="store store--quiet" href="https://play.google.com/store/apps/details?id=com.techsamana.almathurat">
+              <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M4 2.7v18.6c0 .6.65.98 1.17.66l15.3-9.3a.77.77 0 0 0 0-1.32L5.17 2.04A.77.77 0 0 0 4 2.7z"/></svg>
+              <span><small>Dapatkan di</small>Google Play</span>
+            </a>
+          </div>
+          <a class="web-link" href="https://mathurat.zeabur.app">Atau guna terus dalam pelayar web</a>
+        </div>
 
-  <!-- HERO -->
-  <section class="hero">
-    <div class="hero-grid">
-      <div class="hero-text">
-        <div class="hero-label"><span>Wazifah Kubra · Edisi Digital</span></div>
-        <h1 class="hero-display">
-          <em>Kitab</em> zikir,<br/>
-          pagi <span class="amp">&amp;</span><br/>
-          petang.
-        </h1>
-        <p class="hero-lede">
-          <span class="dropcap">H</span>impunan wirid harian susunan Imam Hassan al-Banna — ditertibkan semula dalam bentuk digital, berpandukan PDF Al-Mathurat Kubra yang diterbitkan oleh JAKIM. Teks Arab dan terjemahan Melayu dalam satu aplikasi yang tenang.
-        </p>
-        <div class="hero-cta">
-          <a href="https://apps.apple.com/app/id6762747747" class="cta-link">
-            <span>Muat turun di App Store</span>
-            <span class="arrow" aria-hidden="true"></span>
-          </a>
-          <a href="https://mathurat.zeabur.app" class="cta-link" style="margin-top:14px">
-            <span>Guna terus di web</span>
-            <span class="arrow" aria-hidden="true"></span>
-          </a>
-          <div class="cta-meta">Percuma &nbsp;·&nbsp; Tanpa iklan &nbsp;·&nbsp; Tanpa pengumpulan data</div>
+        <div class="reader">
+          <article class="card" aria-label="Contoh bacaan dari app">
+            <div class="card-head">
+              <span class="card-title">Doa Pujian Kepada Allah</span>
+              <span class="card-step">20 / 41</span>
+            </div>
+            <p class="ayah only-pagi" lang="ar">أَصْبَحْنَا وَأَصْبَحَ الْمُلْكُ لِلَّهِ، وَالْحَمْدُ لِلَّهِ، لَا شَرِيكَ لَهُ، لَا إِلَهَ إِلَّا هُوَ، وَإِلَيْهِ النُّشُورُ</p>
+            <p class="ayah only-petang" lang="ar">أَمْسَيْنَا وَأَمْسَى الْمُلْكُ لِلَّهِ، وَالْحَمْدُ لِلَّهِ، لَا شَرِيكَ لَهُ، لَا إِلَهَ إِلَّا هُوَ، وَإِلَيْهِ الْمَصِيرُ</p>
+            <p class="tr only-pagi">Sesungguhnya kami terjaga di pagi hari dengan (kesedaran bahawa) Kerajaan (bumi dan segala isinya) ini seluruhnya adalah milik Allah. Dan segala puji bagi Allah, tiada sekutu bagi-Nya tiada Tuhan selain Dia dan kepada-Nya kami akan dibangkitkan.</p>
+            <p class="tr only-petang">Sesungguhnya kami berada di petang hari dengan (kesedaran bahawa) Kerajaan (bumi dan segala isinya) ini seluruhnya adalah milik Allah. Dan segala puji bagi Allah, tiada sekutu bagi-Nya tiada Tuhan selain Dia dan kepada-Nya jualah tempat kembali.</p>
+            <div class="counter">
+              <button class="tap tap--minus" type="button" id="kurang" aria-label="Kurangkan kiraan">&minus;</button>
+              <div class="beads" aria-live="polite">
+                <span class="bead" aria-hidden="true"></span>
+                <span class="bead" aria-hidden="true"></span>
+                <span class="bead" aria-hidden="true"></span>
+                <span class="count"><span id="kiraan">0</span><small>/3</small></span>
+              </div>
+              <button class="tap tap--plus" type="button" id="tambah" aria-label="Tambah kiraan">+</button>
+            </div>
+          </article>
+          <p class="card-note" id="nota">Bacaan ini diulang 3 kali. Tekan + untuk mengira, sama seperti dalam app.</p>
         </div>
       </div>
+    </section>
 
-      <div class="hero-arabic">
-        <svg class="seal" width="92" height="92" viewBox="0 0 100 100" aria-hidden="true">
-          <defs>
-            <pattern id="grid8" width="12.5" height="12.5" patternUnits="userSpaceOnUse">
-              <path d="M0,6.25 L12.5,6.25 M6.25,0 L6.25,12.5" stroke="#a6823a" stroke-width="0.3" opacity="0.4"/>
-            </pattern>
-          </defs>
-          <circle cx="50" cy="50" r="46" fill="none" stroke="#a6823a" stroke-width="0.6" opacity="0.6"/>
-          <circle cx="50" cy="50" r="38" fill="none" stroke="#a6823a" stroke-width="0.4" opacity="0.5"/>
-          <g stroke="#a6823a" stroke-width="0.5" fill="none" opacity="0.7">
-            <path d="M50,10 L50,90 M10,50 L90,50 M22,22 L78,78 M78,22 L22,78"/>
-            <path d="M50,18 L62,50 L50,82 L38,50 Z"/>
-            <path d="M18,50 L50,38 L82,50 L50,62 Z"/>
-          </g>
-          <circle cx="50" cy="50" r="4" fill="#a6823a" opacity="0.85"/>
-        </svg>
-        <div class="arabic-bg">الْمَأْثُورَات</div>
-        <div class="translit">al-ma'thūrāt &nbsp;—&nbsp; that which is transmitted</div>
-      </div>
-    </div>
-  </section>
+    <section class="day" aria-labelledby="sehari">
+      <div class="wrap">
+        <div class="section-head is-pagi">
+          <h2 id="sehari">Dari Subuh hingga Isyak</h2>
+          <p>Al-Mathurat menemani amalan anda sepanjang hari, bukan sekadar teks untuk dibaca.</p>
+        </div>
 
-  <!-- ORNAMENT -->
-  <div class="ornament" aria-hidden="true">
-    <span class="line"></span>
-    <span class="glyph">⁂</span>
-    <span class="line"></span>
-  </div>
+        <ol class="hours">
+          <li class="hour is-pagi">
+            <div class="when">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><path d="M3 18h18M7 18a5 5 0 0 1 10 0M12 7v3M5.6 11.6l1.4 1.4M18.4 11.6 17 13"/></svg>
+              Selepas Subuh
+            </div>
+            <div>
+              <h3>Bacaan pagi, dengan suara</h3>
+              <p>Dengar bacaan penuh oleh Ustadz Nandar S. Ayat yang sedang dibaca akan disorot, dan skrin bergerak mengikut bacaan.</p>
+              <p>Pilih kelajuan bacaan, dan terus dengar walaupun skrin dikunci.</p>
+            </div>
+            <div class="shots"><div class="shot"><img src="./assets/app-bacaan-pagi.webp" alt="Skrin bacaan pagi: Ayatul Kursi dengan ayat yang sedang dibaca disorot" loading="lazy" width="640" height="1385" /></div></div>
+          </li>
 
-  <!-- CHAPTER I : TENTANG -->
-  <section class="chapter reveal">
-    <div class="chapter-inner">
-      <div class="folio">§ I · Asas</div>
-      <div class="chapter-body">
-        <h2 class="chapter-title"><em>Tentang</em> al-Mathurat.</h2>
-        <p>Perkataan <em>ma'thūr</em> (مأثور) berasal dari bahasa Arab, bermaksud <em>"yang diriwayatkan"</em>. Al-Mathurat adalah himpunan zikir, doa, dan wirid yang dipetik daripada al-Quran dan hadis-hadis sahih — yang diamalkan oleh Rasulullah ﷺ dan diajarkan kepada para sahabat.</p>
-        <p>Risalah ini disusun oleh <strong>Imam Hassan al-Banna (1906–1949)</strong> sebagai panduan zikir harian, agar setiap Muslim dapat mengingati Allah secara istiqamah pada waktu pagi dan petang.</p>
-      </div>
-      <aside class="marginalia">
-        <strong>Nota kaki:</strong> Aplikasi ini menggunakan susunan <em>Wazifah Kubra</em> — versi lengkap — dipetik dari PDF Al-Mathurat Kubra yang diterbitkan JAKIM. Projek komuniti oleh Techsamana; tiada kaitan rasmi dengan JAKIM.
-      </aside>
-    </div>
-  </section>
+          <li class="hour is-pagi">
+            <div class="when">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 3v2M12 19v2M3 12h2M19 12h2"/></svg>
+              Zohor
+            </div>
+            <div>
+              <h3>Azan pada setiap waktu</h3>
+              <p>Waktu solat JAKIM untuk 60 zon di seluruh Malaysia, dikesan dari lokasi anda. Azan penuh berkumandang bila masuk waktu. Anda boleh pilih waktu mana yang berazan dan rakaman azan yang anda suka.</p>
+              <p>Di mana pun anda berada, kompas kiblat berputar mengikut telefon dan bergetar perlahan bila anda tepat menghadap kiblat.</p>
+            </div>
+            <div class="shots shots--pair">
+              <div class="shot"><img src="./assets/app-waktu-solat.webp" alt="Skrin waktu solat untuk zon Kuala Lumpur" loading="lazy" width="640" height="1385" /></div>
+              <div class="shot"><img src="./assets/app-kiblat.webp" alt="Skrin kompas arah kiblat" loading="lazy" width="640" height="1385" /></div>
+            </div>
+          </li>
 
-  <!-- CHAPTER II : FEATURES -->
-  <section class="chapter reveal">
-    <div class="chapter-inner">
-      <div class="folio">§ II · Ciri</div>
-      <div class="chapter-body" style="max-width: 720px;">
-        <h2 class="chapter-title">Enam <em>ciri</em>.</h2>
-        <ol class="feature-list">
-          <li>
-            <span class="roman">I</span>
-            <div>
-              <h3>Sumber teks JAKIM</h3>
-              <p>Teks Wazifah Kubra (versi lengkap) dipetik dari PDF Al-Mathurat Kubra terbitan Jabatan Kemajuan Islam Malaysia.</p>
+          <li class="hour is-petang">
+            <div class="when">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><path d="M3 18h18M7 18a5 5 0 0 1 10 0M12 13v-3M9.5 8.5 12 6l2.5 2.5"/></svg>
+              Selepas Asar
             </div>
+            <div>
+              <h3>Bacaan petang yang tidak tersilap kiraan</h3>
+              <p>Bila petang tiba, app bertukar ke warna senja dan memaparkan teks bacaan petang dengan sendirinya.</p>
+              <p>Zikir yang diulang 3, 7 atau 10 kali dikira dengan manik tasbih. Tekan sahaja, dan app ingat kedudukan anda.</p>
+            </div>
+            <div class="shots"><div class="shot"><img src="./assets/app-bacaan-petang.webp" alt="Skrin bacaan petang: selawat atas Nabi dengan manik tasbih 4 daripada 10" loading="lazy" width="640" height="1385" /></div></div>
           </li>
-          <li>
-            <span class="roman">II</span>
-            <div>
-              <h3>Dua lapisan teks</h3>
-              <p>Teks Arab mushaf dan terjemahan Bahasa Melayu — selari untuk rujukan pantas.</p>
+
+          <li class="hour is-petang">
+            <div class="when">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 14.5A8 8 0 0 1 9.5 4a8 8 0 1 0 10.5 10.5z"/></svg>
+              Isyak
             </div>
-          </li>
-          <li>
-            <span class="roman">III</span>
             <div>
-              <h3>Tasbih digital</h3>
-              <p>Pembilang bacaan automatik yang halus — tidak perlu tasbih fizikal di tangan.</p>
+              <h3>Lihat istiqamah anda</h3>
+              <p>Setiap bacaan yang selesai menyambung rentetan hari anda. Naik maqam, dan buka 19 anugerah cat air yang boleh dikongsi sebagai kad.</p>
+              <p>Semua rekod ini disimpan dalam telefon anda sahaja.</p>
             </div>
-          </li>
-          <li>
-            <span class="roman">IV</span>
-            <div>
-              <h3>Mod Subuh &amp; Maghrib</h3>
-              <p>Paparan dikhususkan untuk pagi dan petang — lembut pada mata pada setiap waktu.</p>
-            </div>
-          </li>
-          <li>
-            <span class="roman">V</span>
-            <div>
-              <h3>Reka bentuk satu tangan</h3>
-              <p>Swipe kiri atau kanan untuk beralih doa. Sambung dari tempat terakhir, secara automatik.</p>
-            </div>
-          </li>
-          <li>
-            <span class="roman">VI</span>
-            <div>
-              <h3>Sepenuhnya peribadi</h3>
-              <p>Tiada pendaftaran, tiada pengesanan, tiada iklan. Catatan kekal pada peranti anda sahaja.</p>
-            </div>
+            <div class="shots"><div class="shot"><img src="./assets/app-istiqamah.webp" alt="Skrin istiqamah: 20 hari berturut-turut dan anugerah yang dibuka" loading="lazy" width="640" height="1385" /></div></div>
           </li>
         </ol>
       </div>
-      <aside class="marginalia">
-        Direka untuk bacaan tunggal — satu skrol, satu tangan, satu niat.
-      </aside>
-    </div>
-  </section>
+    </section>
 
-  <!-- DUALITY : DAWN / DUSK -->
-  <section class="duality reveal">
-    <div class="dawn-panel">
-      <div class="corner">Subuh · Morning</div>
-      <div>
-        <div class="time-label">— al-fajr</div>
-        <div class="time-arabic">الفَجْر</div>
-        <h3>Mulakan hari<br/>dengan zikir.</h3>
+    <section class="twin wrap" aria-labelledby="wazifah">
+      <div class="twin-grid">
+        <div>
+          <h2 id="wazifah">Kubra atau Sughra, ikut masa anda</h2>
+          <p>Kedua-duanya mengikut susunan asal risalah Al-Ma'thurat. Tukar antara keduanya dengan sekali tekan.</p>
+        </div>
+        <div class="wazifah">
+          <div>
+            <b>41</b>
+            <strong>Wazifah Kubra</strong>
+            <span>Bacaan penuh, dengan bilangan ulang mengikut risalah asal.</span>
+          </div>
+          <div>
+            <b>25</b>
+            <strong>Wazifah Sughra</strong>
+            <span>Bacaan ringkas untuk hari yang padat. Ayat Al-Quran dipendekkan kepada Al-Fatihah, Ayatul Kursi, akhir Al-Baqarah dan tiga Qul.</span>
+          </div>
+        </div>
       </div>
-      <p>Mod pagi — warna parchment yang lembut, direka untuk bacaan selepas Subuh hingga tengah hari. Skrin kekal terjaga. Kaunter mengiringi nafas bacaan anda.</p>
-    </div>
-    <div class="dusk-panel">
-      <div class="corner">Maghrib · Evening</div>
-      <div>
-        <div class="time-label">— al-maghrib</div>
-        <div class="time-arabic">المَغْرِب</div>
-        <h3>Tutup hari<br/>dengan zikir.</h3>
+
+      <ul class="promises">
+        <li><strong>Percuma sepenuhnya</strong><span>Tiada iklan, tiada pembelian dalam app.</span></li>
+        <li><strong>Tiada akaun, tiada penjejakan</strong><span>Lokasi hanya digunakan untuk menentukan zon waktu solat dan arah kiblat. Ia tidak disimpan.</span></li>
+        <li><strong>Berfungsi tanpa internet</strong><span>Teks dan audio tersimpan dalam telefon. Internet hanya perlu sebulan sekali untuk waktu solat.</span></li>
+      </ul>
+    </section>
+
+    <section class="get wrap" id="muat-turun" aria-labelledby="mula">
+      <div class="get-inner">
+        <div class="horizon" aria-hidden="true">
+          <img class="sunrise" src="./assets/banner-sunrise.webp" alt="" loading="lazy" />
+          <img class="sunset" src="./assets/banner-sunset.webp" alt="" loading="lazy" />
+        </div>
+        <div class="ribbon" aria-hidden="true"></div>
+        <img class="icon" src="./assets/icon-192.png" alt="" width="76" height="76" />
+        <h2 id="mula"><span class="only-pagi">Mulakan bacaan pagi ini.</span><span class="only-petang">Mulakan bacaan petang ini.</span></h2>
+        <p>Untuk iPhone dan Apple Watch, telefon Android, atau terus dalam pelayar web.</p>
+        <div class="stores">
+          <a class="store store--solid" href="https://apps.apple.com/my/app/id6762747747">
+            <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.05 20.28c-.98.95-2.05.86-3.12.34-1.12-.55-2.15-.59-3.34 0-1.49.71-2.32.5-3.21-.34C2.78 15.36 3.43 7.85 9.05 7.55c1.37.07 2.32.74 3.13.79 1.21-.21 2.36-.86 3.66-.77 1.5.12 2.64.71 3.39 1.78-3.13 1.87-2.38 5.98.48 7.13-.57 1.46-1.3 2.91-2.66 3.79zM12.03 7.5c-.15-2.23 1.66-4.07 3.74-4.25.27 2.5-2.32 4.46-3.74 4.25z"/></svg>
+            <span><small>Muat turun di</small>App Store</span>
+          </a>
+          <a class="store store--quiet" href="https://play.google.com/store/apps/details?id=com.techsamana.almathurat">
+            <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M4 2.7v18.6c0 .6.65.98 1.17.66l15.3-9.3a.77.77 0 0 0 0-1.32L5.17 2.04A.77.77 0 0 0 4 2.7z"/></svg>
+            <span><small>Dapatkan di</small>Google Play</span>
+          </a>
+        </div>
+        <a class="web-link" href="https://mathurat.zeabur.app">Buka versi web</a>
       </div>
-      <p>Mod petang — palet malam yang gelap dan hangat, untuk bacaan selepas Asar hingga malam. Tiada cahaya terang, tiada gangguan — hanya teks dan bacaan.</p>
-    </div>
-  </section>
-
-  <!-- MANIFESTO -->
-  <section class="manifesto reveal">
-    <blockquote>
-      <em>Mulakan hari<br/>dengan zikir<span class="accent">.</span></em>
-      <br/>
-      <em>Tutup hari<br/>dengan zikir<span class="accent">.</span></em>
-    </blockquote>
-    <div class="attribution">— Niat Wazifah Kubra</div>
-  </section>
-
+    </section>
   </main>
 
-  <!-- COLOPHON / FOOTER -->
-  <footer class="colophon">
-    <div class="colophon-inner">
-      <div class="colophon-top">
-        <div>
-          <div class="colophon-brand">Al-Mathurat</div>
-          <div class="colophon-tag">Wazifah Kubra · iOS</div>
-        </div>
-        <div class="colophon-col">
-          <h4>Penerbit</h4>
-          <p>Techsamana<br/>Kuala Lumpur</p>
-        </div>
-        <div class="colophon-col">
-          <h4>Sumber teks</h4>
-          <p>JAKIM<br/>Hassan al-Banna</p>
-        </div>
-        <div class="colophon-col">
-          <h4>Hubungi</h4>
-          <p><a class="ul-link" href="mailto:mohdhaaziq@gmail.com">mohdhaaziq@<br/>gmail.com</a></p>
-        </div>
-      </div>
-      <div class="colophon-bottom">
-        <div>© 2026 Techsamana · Al-Mathurat: Wazifah Kubra</div>
-        <nav>
-          <a class="ul-link" href="./privacy.html">Privacy</a>
-          <a class="ul-link" href="./support.html">Support</a>
-          <a class="ul-link" href="mailto:mohdhaaziq@gmail.com">Contact</a>
-        </nav>
-      </div>
+  <footer class="wrap foot">
+    <div class="credits">
+      <h2>Penghargaan</h2>
+      <ul>
+        <li>Susunan dan bilangan ulang mengikut risalah Al-Ma'thurat Imam Hasan al-Banna.</li>
+        <li>Terjemahan berpandukan Al-Mathurat terbitan JAKIM.</li>
+        <li>Audio bacaan oleh Ustadz Nandar S., digunakan dengan izin.</li>
+        <li>Waktu solat melalui api.waktusolat.app. Kredit penuh rakaman azan ada dalam app.</li>
+        <li>Al-Mathurat ialah projek komuniti Techsamana, dan bukan aplikasi rasmi JAKIM.</li>
+      </ul>
+    </div>
+    <div class="foot-bar">
+      <span>&copy; 2026 Techsamana</span>
+      <nav aria-label="Pautan kaki">
+        <a href="./privacy.html">Privasi</a>
+        <a href="./support.html">Bantuan</a>
+        <a href="https://techsamana.my/sokong">Sokong projek ini</a>
+        <a href="mailto:salam@techsamana.my">salam@techsamana.my</a>
+      </nav>
     </div>
   </footer>
 
   <script>
-    // Scroll-triggered reveal
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add('visible');
-          observer.unobserve(entry.target);
-        }
+    (function () {
+      var root = document.documentElement;
+      var buttons = document.querySelectorAll('.mode button');
+      var meta = document.querySelector('meta[name="theme-color"]');
+
+      function setMode(mode) {
+        var petang = mode === 'petang';
+        root.classList.toggle('evening', petang);
+        buttons.forEach(function (b) { b.setAttribute('aria-pressed', String(b.dataset.mode === mode)); });
+        if (meta) meta.setAttribute('content', petang ? '#f8ede6' : '#eef5f8');
+        reset();
+      }
+      buttons.forEach(function (b) { b.addEventListener('click', function () { setMode(b.dataset.mode); }); });
+
+      // Waktu Malaysia: petang dari 3 ptg hingga 5 pagi (sama dgn app)
+      var now = new Date();
+      var jam = Number(new Intl.DateTimeFormat('en-GB', { hour: 'numeric', hourCycle: 'h23', timeZone: 'Asia/Kuala_Lumpur' }).format(now));
+      try {
+        document.getElementById('tarikh').textContent =
+          new Intl.DateTimeFormat('ms-MY', { weekday: 'long', day: 'numeric', month: 'long', timeZone: 'Asia/Kuala_Lumpur' }).format(now);
+      } catch (e) {}
+
+      // Pembilang tasbih
+      var beads = document.querySelectorAll('.bead');
+      var out = document.getElementById('kiraan');
+      var note = document.getElementById('nota');
+      var defaultNote = note.textContent;
+      var n = 0;
+      function draw(popIndex) {
+        beads.forEach(function (b, i) {
+          b.classList.toggle('on', i < n);
+          b.classList.remove('pop');
+          if (i === popIndex) { void b.offsetWidth; b.classList.add('pop'); }
+        });
+        out.textContent = n;
+        note.textContent = n === 3 ? 'Lengkap 3 kali. Dalam app, bacaan seterusnya dibuka sendiri.' : defaultNote;
+      }
+      function reset() { n = 0; draw(-1); }
+      document.getElementById('tambah').addEventListener('click', function () {
+        if (n < 3) { n++; draw(n - 1); }
+        if (navigator.vibrate) navigator.vibrate(8);
       });
-    }, { threshold: 0.12, rootMargin: '0px 0px -60px 0px' });
+      document.getElementById('kurang').addEventListener('click', function () {
+        if (n > 0) { n--; draw(-1); }
+      });
 
-    document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+      setMode(jam >= 15 || jam < 5 ? 'petang' : 'pagi');
+    })();
   </script>
-
 </body>
 </html>
